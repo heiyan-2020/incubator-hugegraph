@@ -35,7 +35,7 @@ abstract class GrpcClosure<V> implements RaftClosure {
     private V result;
 
     /**
-     * 设置输出结果给raftClosure，对于Follower来说，raftClosure为空
+     * 设置输出结果给 raftClosure，对于 Follower 来说，raftClosure 为空
      */
     public static <V> void setResult(RaftClosure raftClosure, V result) {
         GrpcClosure closure = (GrpcClosure) raftClosure;

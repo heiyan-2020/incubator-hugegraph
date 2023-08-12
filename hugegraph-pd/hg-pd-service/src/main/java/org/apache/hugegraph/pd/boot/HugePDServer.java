@@ -24,7 +24,7 @@ import org.springframework.context.annotation.ComponentScan;
 import com.alipay.remoting.util.StringUtils;
 
 /**
- * PD服务启动类
+ * PD 服务启动类
  */
 @ComponentScan(basePackages = {"org.apache.hugegraph.pd"})
 @SpringBootApplication

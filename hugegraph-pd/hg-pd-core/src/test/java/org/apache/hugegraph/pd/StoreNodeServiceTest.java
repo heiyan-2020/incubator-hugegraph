@@ -107,7 +107,7 @@ public class StoreNodeServiceTest {
                                                                          .build())
                                              .build();
             stores[i] = storeService.register(store);
-            System.out.println("新注册store， id = " + stores[i].getId());
+            System.out.println("新注册 store，id = " + stores[i].getId());
         }
         Assert.assertEquals(count, storeService.getStores("").size());
 
@@ -124,19 +124,19 @@ public class StoreNodeServiceTest {
                                          .setGraphName("defaultGH")
                                          .setPartitionCount(10)
                                          .build();
-        // 分配shard
+        // 分配 shard
         List<Metapb.Shard> shards = storeService.allocShards(graph, 1);
 
 
         Assert.assertEquals(3, shards.size());
 
         Assert.assertEquals(pdConfig.getPartition().getTotalCount(),
-                            storeService.getShardGroups().size());        // 设置leader
+                            storeService.getShardGroups().size());        // 设置 leader
         Metapb.Shard leader = Metapb.Shard.newBuilder(shards.get(0))
                                           .setRole(Metapb.ShardRole.Leader).build();
         shards = new ArrayList<>(shards);
         shards.set(0, leader);
-        // 增加shard
+        // 增加 shard
         pdConfig.getPartition().setShardCount(5);
 
         Metapb.ShardGroup shardGroup = Metapb.ShardGroup.newBuilder()
@@ -145,19 +145,19 @@ public class StoreNodeServiceTest {
         shards = storeService.reallocShards(shardGroup);
 
         Assert.assertEquals(5, shards.size());
-        // 减少shard
+        // 减少 shard
         pdConfig.getPartition().setShardCount(3);
         shards = storeService.reallocShards(shardGroup);
         Assert.assertEquals(3, shards.size());
-        // 包含leader，leader不能被删除
+        // 包含 leader，leader 不能被删除
         Assert.assertTrue(shards.contains(leader));
 
-        // 减少shard
+        // 减少 shard
         pdConfig.getPartition().setShardCount(1);
         graph = Metapb.Graph.newBuilder(graph).build();
         shards = storeService.reallocShards(shardGroup);
         Assert.assertEquals(1, shards.size());
-        // 包含leader，leader不能被删除
+        // 包含 leader，leader 不能被删除
         Assert.assertTrue(shards.contains(leader));
 
         for (Metapb.Store store : stores) {
@@ -235,7 +235,7 @@ public class StoreNodeServiceTest {
                                                                          .build())
                                              .build();
             stores[i] = storeService.register(store);
-            System.out.println("新注册store， id = " + Long.toHexString(stores[i].getId()));
+            System.out.println("新注册 store，id = " + Long.toHexString(stores[i].getId()));
         }
         Assert.assertEquals(count, storeService.getStores().size());
 
@@ -275,7 +275,7 @@ public class StoreNodeServiceTest {
                                                                          .build())
                                              .build();
             stores[i] = storeService.register(store);
-            System.out.println("新注册store， id = " + Long.toHexString(stores[i].getId()));
+            System.out.println("新注册 store，id = " + Long.toHexString(stores[i].getId()));
         }
         Assert.assertEquals(count, storeService.getStores("").size());
 
@@ -297,7 +297,7 @@ public class StoreNodeServiceTest {
         System.out.println(
                 "分区数量： " + partitionService.getPartitions(graph.getGraphName()).size());
 
-        int[] caseNo = {0}; //1 测试增加shard, 2 //测试store下线
+        int[] caseNo = {0}; //1 测试增加 shard, 2 //测试 store 下线
 
         Metapb.Shard leader = null;
         int[] finalCaseNo = caseNo;
@@ -390,7 +390,7 @@ public class StoreNodeServiceTest {
         caseNo[0] = 2;
         partitionService.updateGraph(graph);
 
-        // 测试store离线
+        // 测试 store 离线
         caseNo[0] = 3;
         partitionService.storeOffline(stores[0]);
 
@@ -403,7 +403,7 @@ public class StoreNodeServiceTest {
                                                                                .setRole(
                                                                                        Metapb.ShardRole.Leader))
                                                            .build();
-        // 测试leader飘移
+        // 测试 leader 飘移
         caseNo[0] = 4;
         partitionService.partitionHeartbeat(stats);
         AtomicReference<Metapb.Shard> shard = new AtomicReference<>();

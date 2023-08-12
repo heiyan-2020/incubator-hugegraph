@@ -20,7 +20,7 @@ package org.apache.hugegraph.store.meta.base;
 import org.apache.hugegraph.rocksdb.access.RocksDBSession;
 
 /**
- * 元数据存储在分区的default cf中
+ * 元数据存储在分区的 default cf 中
  */
 public class PartitionMetaStore extends MetaStoreBase {
     public static final String DEFAULT_CF_NAME = "default";

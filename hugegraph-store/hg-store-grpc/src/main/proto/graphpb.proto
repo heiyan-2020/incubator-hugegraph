@@ -58,7 +58,7 @@ message Property{
 
 message Vertex{
   int64 label = 1; // 点类型
-  Variant id = 2;  // 点ID
+  Variant id = 2;  // 点 ID
   repeated Property properties = 3; //点属性
 }
 
@@ -66,8 +66,8 @@ message Edge{
   int64 label = 1;        // 边类型
   int64 sourceLabel = 2;
   int64 targetLabel = 3;
-  Variant source_id = 4;  // 源点ID
-  Variant target_id = 5;  // 目标点ID
+  Variant source_id = 4;  // 源点 ID
+  Variant target_id = 5;  // 目标点 ID
 
   repeated Property properties = 6; //边属性
 }

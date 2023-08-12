@@ -26,7 +26,7 @@ import java.util.Objects;
  */
 public final class HgNodePartition {
     private final Long nodeId;
-    //当前key的hashcode
+    //当前 key 的 hashcode
     private final Integer keyCode;
 
     //分区的开始结束范围

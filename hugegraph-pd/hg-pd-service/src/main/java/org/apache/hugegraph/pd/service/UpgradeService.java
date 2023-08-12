@@ -49,7 +49,7 @@ public class UpgradeService {
         var dataVersion = getDataVersion();
         log.info("now db data version : {}", dataVersion);
         for (VersionUpgradeScript script : factory.getScripts()) {
-            // 执行过，run once的跳过
+            // 执行过，run once 的跳过
             if (isExecuted(script.getClass().getName()) && script.isRunOnce()) {
                 log.info("Script {} is Executed and is run once", script.getClass().getName());
                 continue;

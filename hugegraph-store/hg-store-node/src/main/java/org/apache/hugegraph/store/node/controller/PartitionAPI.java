@@ -97,7 +97,7 @@ public class PartitionAPI {
                 String graphName = partitionEntry.getKey();
                 Partition pt = partitionEntry.getValue();
                 PartitionInfo partition = new PartitionInfo(pt);
-                // 此处为了打开所有的图，metric只返回已打开的图
+                // 此处为了打开所有的图，metric 只返回已打开的图
                 businessHandler.getLatestSequenceNumber(graphName, pt.getId());
                 partition.setMetric(
                         businessHandler.getPartitionMetric(graphName, pt.getId(), accurate));
@@ -141,7 +141,7 @@ public class PartitionAPI {
     }
 
     /**
-     * 打印分区的所有key
+     * 打印分区的所有 key
      */
     @GetMapping(value = "/partition/dump/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public Map<String, Object> dumpPartition(@PathVariable(value = "id") int id) throws
@@ -170,7 +170,7 @@ public class PartitionAPI {
     }
 
     /**
-     * 打印分区的所有key
+     * 打印分区的所有 key
      */
     @GetMapping(value = "/partition/clean/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public Map<String, Object> cleanPartition(@PathVariable(value = "id") int id) throws

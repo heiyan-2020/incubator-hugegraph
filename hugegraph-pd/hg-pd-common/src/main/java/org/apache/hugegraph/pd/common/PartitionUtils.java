@@ -22,7 +22,7 @@ public class PartitionUtils {
     public static final int MAX_VALUE = 0xffff;
 
     /**
-     * 计算key的hashcode
+     * 计算 key 的 hashcode
      *
      * @param key
      * @return hashcode

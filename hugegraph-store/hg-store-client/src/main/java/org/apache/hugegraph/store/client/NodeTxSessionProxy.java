@@ -694,7 +694,7 @@ class NodeTxSessionProxy implements HgStoreSession {
     }
 
     private List<NodeTkv> toNodeTkvList(Builder scanReqBuilder) {
-        // TODO 使用builder获取owner
+        // TODO 使用 builder 获取 owner
         String table = scanReqBuilder.getTable();
         HgOwnerKey ownerKey = HgStoreClientConst.ALL_PARTITION_OWNER_KEY;
         byte[] allOwner = ownerKey.getOwner();

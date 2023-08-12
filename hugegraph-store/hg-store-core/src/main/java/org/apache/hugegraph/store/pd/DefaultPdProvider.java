@@ -63,7 +63,7 @@ public class DefaultPdProvider implements PdProvider {
     private PDPulse.Notifier<PartitionHeartbeatRequest.Builder> pdPulse;
     private GraphManager graphManager = null;
     PDClient.PDEventListener listener = new PDClient.PDEventListener() {
-        // 监听pd变更信息的listener
+        // 监听 pd 变更信息的 listener
         @Override
         public void onStoreChanged(NodeEvent event) {
             if (event.getEventType() == NodeEvent.EventType.NODE_RAFT_CHANGE) {
@@ -245,7 +245,7 @@ public class DefaultPdProvider implements PdProvider {
     }
 
     /**
-     * 启动partition心跳流式传输
+     * 启动 partition 心跳流式传输
      *
      * @return
      */
@@ -258,7 +258,7 @@ public class DefaultPdProvider implements PdProvider {
             public void onNotice(PulseServerNotice<PulseResponse> response) {
                 PulseResponse content = response.getContent();
 
-                // 消息消费应答，能够正确消费消息，调用accept返回状态码，否则不要调用accept
+                // 消息消费应答，能够正确消费消息，调用 accept 返回状态码，否则不要调用 accept
                 Consumer<Integer> consumer = integer -> {
                     LOG.debug("Partition heartbeat accept instruction: {}", content);
                     // LOG.info("accept notice id : {}, ts:{}", response.getNoticeId(), System
@@ -272,7 +272,7 @@ public class DefaultPdProvider implements PdProvider {
                 if (content.hasInstructionResponse()) {
                     var pdInstruction = content.getInstructionResponse();
                     consumer.accept(0);
-                    // 当前的链接变成了follower，重新链接
+                    // 当前的链接变成了 follower，重新链接
                     if (pdInstruction.getInstructionType() ==
                         PdInstructionType.CHANGE_TO_FOLLOWER) {
                         onCompleted();

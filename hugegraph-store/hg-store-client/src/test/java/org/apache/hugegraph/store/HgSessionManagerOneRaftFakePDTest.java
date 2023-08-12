@@ -35,14 +35,14 @@ import org.apache.hugegraph.store.util.HgStoreTestUtil;
 import org.junit.Assert;
 
 /**
- * 使用fake-pd，支持raft的单元测试
+ * 使用 fake-pd，支持 raft 的单元测试
  */
 public class HgSessionManagerOneRaftFakePDTest {
     private static final Map<Integer, Long> leaderMap = new ConcurrentHashMap<>();
     private static final Map<Long, String> storeMap = new ConcurrentHashMap<>();
 
     private static final int partitionCount = 3;
-    // 需要与store的application.yml的fake-pd.partition-count保持一致
+    // 需要与 store 的 application.yml 的 fake-pd.partition-count 保持一致
     private static final String[] storeAddress = {
             "127.0.0.1:8500"
     };
@@ -68,7 +68,7 @@ public class HgSessionManagerOneRaftFakePDTest {
                        Arrays.equals(startKey, endKey)) {
                 builder.add(leaderMap.get(startCode % partitionCount), startCode);
             } else {
-                Assert.fail("OwnerKey转成HashCode后已经无序了， 按照OwnerKey范围查询没意义");
+                Assert.fail("OwnerKey 转成 HashCode 后已经无序了，按照 OwnerKey 范围查询没意义");
                 builder.add(leaderMap.get(startCode % partitionCount), startCode);
                 builder.add(leaderMap.get(endCode % partitionCount), endCode);
             }
@@ -175,7 +175,7 @@ public class HgSessionManagerOneRaftFakePDTest {
 
     // @Test
     //CAUTION: ONLY FOR LONG！
-    //注意：目前只可以对long类型value进行Merge操作。
+    //注意：目前只可以对 long 类型 value 进行 Merge 操作。
     public void merge() {
         System.out.println("--- test merge (1+1=2)---");
         HgStoreSession session = getStoreSession();

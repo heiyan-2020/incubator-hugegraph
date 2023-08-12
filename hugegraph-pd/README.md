@@ -1,8 +1,8 @@
-# PD部署说明
+# PD 部署说明
 
-## PD配置
+## PD 配置
 
-- 配置文件在application.yml
+- 配置文件在 application.yml
 
 ````
 license:
@@ -27,8 +27,8 @@ partition:
   store-max-shard-count: 12
 ````
 
-##store配置
--配置文件在application.yml,配置pdserver的address
+##store 配置
+-配置文件在 application.yml，配置 pdserver 的 address
 
 ````
 pdserver:
@@ -36,9 +36,9 @@ pdserver:
   address: pdserver ip:端口
 ````
 
-## Hugegraph配置
+## Hugegraph 配置
 
-- 配置项在hugegraph的启动脚本start-hugegraph.sh中
+- 配置项在 hugegraph 的启动脚本 start-hugegraph.sh 中
 
 ````
 if [ -z "$META_SERVERS" ];then
@@ -51,7 +51,7 @@ fi
 
 ## RESTFUL API
 
-- pd提供了一些restful API可以获取集群分区，图，存储节点等一系列信息
+- pd 提供了一些 restful API 可以获取集群分区，图，存储节点等一系列信息
 
 ###获取集群统计信息
 
@@ -123,7 +123,7 @@ GET http://localhost:8620/v1/cluster
 }
 ```
 
-#### 获取pd集群成员信息
+#### 获取 pd 集群成员信息
 
 ###### Method & Url
 
@@ -175,7 +175,7 @@ GET http://localhost:8620/v1/member
 
 ###存储节点相关
 
-#### 获取集群所有的store的信息
+#### 获取集群所有的 store 的信息
 
 ###### Method & Url
 
@@ -258,7 +258,7 @@ GET http://localhost:8620/v1/stores
 }
 ```
 
-#### 获取单个store的信息
+#### 获取单个 store 的信息
 
 ###### Method & Url
 
@@ -756,9 +756,9 @@ GET http://localhost:8620/v1/graph/{graphName}
 }
 ```
 
-###获取shard的信息
+###获取 shard 的信息
 
-#### 获取所有shard的信息
+#### 获取所有 shard 的信息
 
 ###### Method & Url
 
@@ -865,9 +865,9 @@ POST http://127.0.0.1:8620/v1/registry
 
 appName：所属服务名  
 version：所属服务版本号  
-address：服务实例地址+端口  
-interval：实例心跳间隔，字符串，最大9223372036854775807  
-labels: 自定义标签，若服务名为'hg'即hugeserver时，需要提供key为cores的项，进行cpu核数的验证
+address：服务实例地址 + 端口  
+interval：实例心跳间隔，字符串，最大 9223372036854775807  
+labels: 自定义标签，若服务名为'hg'即 hugeserver 时，需要提供 key 为 cores 的项，进行 cpu 核数的验证
 
 ###### Response Body
 
@@ -909,9 +909,9 @@ POST http://127.0.0.1:8620/v1/registryInfo
 }
 ```
 
-以下三项可全部为空，则获取所有服务节点的信息:  
+以下三项可全部为空，则获取所有服务节点的信息： 
 -- appName：过滤所属服务名的条件   
--- version：过滤所属服务版本号的条件，此项有值，则appName不能为空  
+-- version：过滤所属服务版本号的条件，此项有值，则 appName 不能为空  
 -- labels: 过滤自定义标签的条件
 
 ###### Response Body

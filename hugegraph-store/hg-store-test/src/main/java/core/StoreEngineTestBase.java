@@ -38,7 +38,7 @@ import lombok.extern.slf4j.Slf4j;
 import util.UnitTestBase;
 
 /**
- * 使用FakePd 和 FakePdOptions，初始化HgStoreEngine，该类的各项get函数可用
+ * 使用 FakePd 和 FakePdOptions，初始化 HgStoreEngine，该类的各项 get 函数可用
  */
 @Slf4j
 public class StoreEngineTestBase {
@@ -89,7 +89,7 @@ public class StoreEngineTestBase {
     }
 
     /**
-     * 创建 分区为0的partition engine. 该分区1个shard，为leader, graph name: graph0
+     * 创建 分区为 0 的 partition engine. 该分区 1 个 shard，为 leader, graph name: graph0
      *
      * @return
      */

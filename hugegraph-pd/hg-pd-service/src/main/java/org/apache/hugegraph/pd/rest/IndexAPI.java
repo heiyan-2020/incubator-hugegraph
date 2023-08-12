@@ -110,7 +110,7 @@ public class IndexAPI extends API {
                     statistics.dataSize += graphStats.getApproximateSize();
                 }
             }
-            // 数据状态：根据图的状态推出数据状态,枚举值越大，问题越严重， 默认为正常状态
+            // 数据状态：根据图的状态推出数据状态，枚举值越大，问题越严重，默认为正常状态
             Metapb.PartitionState dataState = Metapb.PartitionState.PState_Normal;
             for (Metapb.Graph graph : pdRestService.getGraphs()) {
                 if (graph.getState() == Metapb.PartitionState.UNRECOGNIZED) {
@@ -202,23 +202,23 @@ public class IndexAPI extends API {
          */
         String dataState;
         /**
-         * pd集群成员
+         * pd 集群成员
          */
         List<Member> pdList;
         /**
-         * pd集群的leader
+         * pd 集群的 leader
          */
         Member pdLeader;
         /**
-         * pd集群的大小
+         * pd 集群的大小
          */
         int memberSize;
         /**
-         * stores列表
+         * stores 列表
          */
         List<Store> stores;
         /**
-         * store的数量
+         * store 的数量
          */
         int storeSize;
         /**
@@ -226,7 +226,7 @@ public class IndexAPI extends API {
          */
         int onlineStoreSize;
         /**
-         * 离线的store的数量
+         * 离线的 store 的数量
          */
         int offlineStoreSize;
         /**
@@ -242,7 +242,7 @@ public class IndexAPI extends API {
          */
         int shardCount;
         /**
-         * key的数量
+         * key 的数量
          */
         long keyCount;
         /**

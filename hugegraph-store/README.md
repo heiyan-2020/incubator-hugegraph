@@ -1,8 +1,8 @@
-# HStore存储部署说明
+# HStore 存储部署说明
 
-##安装etcd
+##安装 etcd
 
-- 配置etcd时需要确保其他服务器可以访问，注意配置文件中以下修改
+- 配置 etcd 时需要确保其他服务器可以访问，注意配置文件中以下修改
 
 ````
   name: etcd-1 #节点名称
@@ -11,9 +11,9 @@
   advertise-client-urls: http://0.0.0.0:2379  #客户与本节点交互信息所用地址
 ````
 
-## PD配置
+## PD 配置
 
-- 配置文件在application.yml
+- 配置文件在 application.yml
 
 ````
   grpc:
@@ -32,7 +32,7 @@
     default-shard-count: 3 #默认每个分区副本数
 ````
 
-## StoreNode配置
+## StoreNode 配置
 
 ```` 
   grpc:
@@ -54,12 +54,12 @@
     address: localhost:9000 #PD的grpc地址
 ````
 
-StoreNode在启动后，如果在PD的日志中打印出其注册信息，则代表注册成功，如：Store register, id = ****
+StoreNode 在启动后，如果在 PD 的日志中打印出其注册信息，则代表注册成功，如：Store register, id = ****
 address = ****
 
-## Hugegraph配置
+## Hugegraph 配置
 
-- 配置文件在properties文件，如hugegraph.properties
+- 配置文件在 properties 文件，如 hugegraph.properties
 
 ````
   backend=hstore #后端分布式存储类型，固定为hstore
@@ -69,11 +69,11 @@ address = ****
 
 ## RESTFUL API
 
-- pd提供了一些restful API可以获取分区、存储节点等一系列信息
+- pd 提供了一些 restful API 可以获取分区、存储节点等一系列信息
 
 ###图相关
 
-#### 获取图的partition、shard信息
+#### 获取图的 partition、shard 信息
 
 ###### Method & Url
 
@@ -127,7 +127,7 @@ GET http://localhost:9001/v1/graphs
 }
 ```
 
-#### 获取指定图的partition、shard信息
+#### 获取指定图的 partition、shard 信息
 
 ###### Method & Url
 
@@ -154,7 +154,7 @@ GET http://localhost:9001/v1/graph/default/hugegraph/g
 }
 ```
 
-#### 修改指定图的partition、shard信息
+#### 修改指定图的 partition、shard 信息
 
 ###### Method & Url
 
@@ -507,7 +507,7 @@ message：状态码为错误时的具体出错信息
 data：无返回数据
 ```` 
 
-#### 获取pd成员
+#### 获取 pd 成员
 
 ###### Method & Url
 

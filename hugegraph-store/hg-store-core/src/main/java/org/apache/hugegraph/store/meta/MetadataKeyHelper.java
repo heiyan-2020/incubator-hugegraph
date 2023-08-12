@@ -60,7 +60,7 @@ public class MetadataKeyHelper {
     }
 
     /**
-     * 查询分区内的所有partition prefix， 不包含 graph name
+     * 查询分区内的所有 partition prefix，不包含 graph name
      *
      * @return
      */

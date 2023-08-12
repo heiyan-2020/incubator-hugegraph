@@ -51,7 +51,7 @@ public class ShardAPI extends API {
     @ResponseBody
     public RestApiResponse getShards() {
 
-        //对shards信息的统计
+        //对 shards 信息的统计
         try {
             List<Shard> resultShardList = new ArrayList<>();
             List<Metapb.Graph> graphs = pdRestService.getGraphs();

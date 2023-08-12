@@ -10,7 +10,7 @@ enum ClusterState{
   Cluster_Warn = 2;
   // 分区下线，可以读，无法写
   Cluster_Offline = 10;
-  // 分区故障，无法读写,需要尽快修复故障节点。
+  // 分区故障，无法读写，需要尽快修复故障节点。
   Cluster_Fault = 11;
   Cluster_Not_Ready = -1;
 }
@@ -47,7 +47,7 @@ message Store {
   string address = 2;
   string raft_address = 3;
   repeated StoreLabel labels = 4;
-  // Store软件版本号
+  // Store 软件版本号
   string version = 5;
   StoreState state = 6;
   // The start timestamp of the current store
@@ -86,7 +86,7 @@ message ShardGroup{
 
 message Graph {
   string graph_name = 2;
-  // 分区数量，0表示无效，不能大于raft分组总数
+  // 分区数量，0 表示无效，不能大于 raft 分组总数
   int32 partition_count = 3;
   // 当前工作状态
   PartitionState state = 10;
@@ -102,7 +102,7 @@ enum PartitionState{
   PState_Warn = 2;
   // 分区下线，可以读，无法写
   PState_Offline = 10;
-  // 分区故障，无法读写,需要尽快修复故障节点。
+  // 分区故障，无法读写，需要尽快修复故障节点。
   PState_Fault = 11;
 }
 
@@ -113,9 +113,9 @@ message PartitionV36 {
   uint64 start_key = 4;
   uint64 end_key = 5;
   repeated Shard shards = 6;
-  // Leader任期，leader切换后递增
+  // Leader 任期，leader 切换后递增
   uint64 version = 7;
-  // shards版本号，每次改变后递增
+  // shards 版本号，每次改变后递增
   uint64 conf_ver = 8;
   // 当前工作状态
   PartitionState state = 10;
@@ -128,11 +128,11 @@ message Partition {
   // 分区范围 [start_key, end_key).
   uint64 start_key = 4;
   uint64 end_key = 5;
-  // Partition 对象不在保存 shard list（根据对应的shard group 去查询), version 和 conf version不再有实际的意义
+  // Partition 对象不在保存 shard list（根据对应的 shard group 去查询), version 和 conf version 不再有实际的意义
   // repeated Shard shards = 6;
   // key range 每次改变后递增
   uint64 version = 7;
-  // shards版本号，每次改变后递增
+  // shards 版本号，每次改变后递增
   // uint64 conf_ver = 8;
   // 当前工作状态
   PartitionState state = 10;
@@ -142,7 +142,7 @@ message Partition {
 message PartitionShard {
   metapb.Partition partition = 1;
   metapb.Shard leader = 2;
-  // 离线的Shard
+  // 离线的 Shard
   repeated metapb.Shard offline_shards = 3;
 }
 // 记录分区所在的存储位置
@@ -169,7 +169,7 @@ message ShardStats{
 }
 message PartitionStats{
   uint32 id = 1;
-  // raft分组的任期.
+  // raft 分组的任期。
   uint64 leader_term = 2;
   repeated string graph_name = 3;
   metapb.Shard leader = 4;
@@ -182,7 +182,7 @@ message PartitionStats{
   repeated ShardStats shardStats = 9;
   // 分区近似大小
   uint64 approximate_size = 10;
-  // 分区key的近似数量
+  // 分区 key 的近似数量
   uint64 approximate_keys = 13;
   // heartbeat timestamp
   int64 timestamp = 16;
@@ -193,7 +193,7 @@ message GraphStats{
   string graph_name = 1;
   // 分区近似大小
   uint64 approximate_size = 2;
-  // 分区key的近似数量
+  // 分区 key 的近似数量
   uint64 approximate_keys = 3;
   //  // committed index
   //  uint64 committed_index = 4;
@@ -295,7 +295,7 @@ message StoreStats {
 
 // 分区查询条件
 message PartitionQuery{
-  optional uint64 store_id = 1;      // 0 表示查询条件不包含store_id
+  optional uint64 store_id = 1;      // 0 表示查询条件不包含 store_id
   optional string graph_name = 2;
   optional uint32 partition_id = 4;
 }
@@ -326,15 +326,15 @@ message GraphSpace{
 // PD 配置
 message PDConfig{
   uint64 version = 1;
-  // 分区数量, 初始化根据Store数量动态计算，分裂后进行修改
+  // 分区数量，初始化根据 Store 数量动态计算，分裂后进行修改
   int32 partition_count = 2;
   // 每分区副本数量
   int32 shard_count = 3;
-  // pd集群列表
+  // pd 集群列表
   string peers_list = 4;
-  // 集群中最少store数量
+  // 集群中最少 store 数量
   int32 min_store_count = 6;
-  // 每个store最大副本数
+  // 每个 store 最大副本数
   int32 max_Shards_Per_Store = 7;
   // 修改时间
   uint64 timestamp = 10;

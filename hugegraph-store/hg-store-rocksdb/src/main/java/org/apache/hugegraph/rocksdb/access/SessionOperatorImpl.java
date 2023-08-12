@@ -219,7 +219,7 @@ public class SessionOperatorImpl implements SessionOperator {
     }
 
     /**
-     * commit抛出异常后一定要调用rollback，否则会造成cfHandleReadLock未释放
+     * commit 抛出异常后一定要调用 rollback，否则会造成 cfHandleReadLock 未释放
      */
     @Override
     public Integer commit() throws DBStoreException {
@@ -302,11 +302,11 @@ public class SessionOperatorImpl implements SessionOperator {
     }
 
     /**
-     * 遍历所有cf指定范围的数据
+     * 遍历所有 cf 指定范围的数据
      */
     @Override
     public ScanIterator scanRaw(byte[] keyFrom, byte[] keyTo, long startSeqNum) {
-        int kNumInternalBytes = 8;      //internal key 增加的8个字节后缀
+        int kNumInternalBytes = 8;      //internal key 增加的 8 个字节后缀
         Snapshot snapshot = rocksdb().getSnapshot();
         Iterator<String> cfIterator = session.getTables().keySet().iterator();
 
@@ -328,7 +328,7 @@ public class SessionOperatorImpl implements SessionOperator {
                 RocksIterator iterator = null;
                 ReadOptions readOptions = new ReadOptions()
                         .setSnapshot(snapshot);
-                // TODO rocksdb7.x不支持 setStartSeqNum，改为使用Timestamp
+                // TODO rocksdb7.x 不支持 setStartSeqNum，改为使用 Timestamp
                 if (keyFrom != null) {
                     readOptions.setIterateLowerBound(new Slice(keyFrom));
                 }

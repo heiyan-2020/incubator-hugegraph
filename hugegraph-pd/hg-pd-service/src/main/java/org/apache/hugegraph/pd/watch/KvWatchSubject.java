@@ -41,7 +41,7 @@ import io.grpc.stub.StreamObserver;
 import lombok.extern.slf4j.Slf4j;
 
 /**
- * watch订阅、响应处理类
+ * watch 订阅、响应处理类
  **/
 @Slf4j
 public class KvWatchSubject {
@@ -57,7 +57,7 @@ public class KvWatchSubject {
     BiPredicate<String, String> startWith = String::startsWith;
 
     /**
-     * 会使用以下三组key:
+     * 会使用以下三组 key:
      * clients -> W@KW@key@clientId
      * rocksdb key1 ->W@KW@key@clientId
      * rocksdb key2 ->W@clientId@KW@key@clientId
@@ -88,10 +88,10 @@ public class KvWatchSubject {
     /**
      * 增加观察者
      *
-     * @param key       观察的key
+     * @param key       观察的 key
      * @param clientId  客户端标识
      * @param observer
-     * @param delimiter 观察类型标识符，对前缀监听或者对key的监听可以通过此参数区分
+     * @param delimiter 观察类型标识符，对前缀监听或者对 key 的监听可以通过此参数区分
      * @throws PDException
      */
     public void addObserver(String key, long clientId, StreamObserver<WatchResponse> observer,
@@ -111,11 +111,11 @@ public class KvWatchSubject {
     }
 
     /**
-     * 通知观察者方法，key和prefix都使用此方法，predicate不同
+     * 通知观察者方法，key 和 prefix 都使用此方法，predicate 不同
      *
      * @param key
      * @param watchType 观察类型，一般是增加和删除
-     * @param predicate 判断等于或者是前匹配，用来适配key或prefix观察
+     * @param predicate 判断等于或者是前匹配，用来适配 key 或 prefix 观察
      * @param kvs
      * @throws PDException
      */
@@ -178,9 +178,9 @@ public class KvWatchSubject {
 
     /**
      * 续活客户端
-     * 1.往客户端发一个alive的消息，带重试哈
-     * 2.如果有响应，则续活之前保存的那两组key
-     * 3.如果多次都失败，则删除内存和rocksdb的数据
+     * 1.往客户端发一个 alive 的消息，带重试哈
+     * 2.如果有响应，则续活之前保存的那两组 key
+     * 3.如果多次都失败，则删除内存和 rocksdb 的数据
      */
     public void keepClientAlive() {
         WatchResponse testAlive = WatchResponse.newBuilder().setState(WatchState.Alive).build();
@@ -256,7 +256,7 @@ public class KvWatchSubject {
     }
 
     /**
-     * 通知客户端leader切换了，重连
+     * 通知客户端 leader 切换了，重连
      */
     public void notifyClientChangeLeader() {
         WatchResponse response =

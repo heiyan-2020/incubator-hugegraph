@@ -53,7 +53,7 @@ public class StoreMetadata extends GlobalMetaStore {
     }
 
     public Store load() {
-        // 针对多目录存储的情况下，预先创建文件夹，方便pd端统计文件存储
+        // 针对多目录存储的情况下，预先创建文件夹，方便 pd 端统计文件存储
         dataLocations.forEach(path -> {
             String strPath = Paths.get(path).toAbsolutePath().toString();
             File dbFile = new File(strPath);

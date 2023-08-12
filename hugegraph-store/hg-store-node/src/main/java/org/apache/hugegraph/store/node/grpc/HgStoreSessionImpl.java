@@ -129,7 +129,7 @@ public class HgStoreSessionImpl extends HgStoreSessionGrpc.HgStoreSessionImplBas
 
         String graph = request.getHeader().getGraph();
         int partition = request.getPartition();
-        // 发给不同的raft执行
+        // 发给不同的 raft 执行
         BatchGrpcClosure<FeedbackRes> closure = new BatchGrpcClosure<>(1);
         storeService.addRaftTask(HgStoreNodeService.CLEAN_OP, graph, partition,
                                  request,
@@ -227,7 +227,7 @@ public class HgStoreSessionImpl extends HgStoreSessionGrpc.HgStoreSessionImplBas
                         GraphMode graphMode = graphState.getMode();
                         if (graphMode != null &&
                             graphMode.getNumber() == GraphMode.ReadOnly_VALUE) {
-                            // 状态为只读时从pd获取最新的图状态，图只读状态会在pd的通知中更新
+                            // 状态为只读时从 pd 获取最新的图状态，图只读状态会在 pd 的通知中更新
                             Metapb.Graph pdGraph =
                                     pd.getPDClient().getGraph(graph);
                             Metapb.GraphState pdGraphState =
@@ -236,13 +236,13 @@ public class HgStoreSessionImpl extends HgStoreSessionGrpc.HgStoreSessionImplBas
                                 pdGraphState.getMode() != null &&
                                 pdGraphState.getMode().getNumber() ==
                                 GraphMode.ReadOnly_VALUE) {
-                                // 确认pd中存储的当前状态也是只读，则不允许插入数据
+                                // 确认 pd 中存储的当前状态也是只读，则不允许插入数据
                                 throw new PDException(-1,
                                                       "the graph space size " +
                                                       "has " +
                                                       "reached the threshold");
                             }
-                            // pd状态与本地缓存不一致，本地缓存更新为pd中的状态
+                            // pd 状态与本地缓存不一致，本地缓存更新为 pd 中的状态
                             managerGraph.setProtoObj(pdGraph);
                         }
                     }
@@ -266,7 +266,7 @@ public class HgStoreSessionImpl extends HgStoreSessionGrpc.HgStoreSessionImplBas
         list.forEach((entry) -> {
             Key startKey = entry.getStartKey();
             if (startKey.getCode() == HgStoreConst.SCAN_ALL_PARTITIONS_ID) {
-                // 所有Leader分区
+                // 所有 Leader 分区
                 List<Integer> ids =
                         storeService.getGraphLeaderPartitionIds(graph);
                 ids.forEach(id -> {
@@ -276,7 +276,7 @@ public class HgStoreSessionImpl extends HgStoreSessionGrpc.HgStoreSessionImplBas
                     groups.get(id).add(entry);
                 });
             } else {
-                // 根据keyCode查询所属分区ID，按分区ID分组
+                // 根据 keyCode 查询所属分区 ID，按分区 ID 分组
                 Integer partitionId =
                         pd.getPartitionByCode(graph, startKey.getCode())
                           .getId();
@@ -287,7 +287,7 @@ public class HgStoreSessionImpl extends HgStoreSessionGrpc.HgStoreSessionImplBas
             }
         });
 
-        // 发给不同的raft执行
+        // 发给不同的 raft 执行
         BatchGrpcClosure<FeedbackRes> closure =
                 new BatchGrpcClosure<>(groups.size());
         groups.forEach((partition, entries) -> {
@@ -381,7 +381,7 @@ public class HgStoreSessionImpl extends HgStoreSessionGrpc.HgStoreSessionImplBas
         }
 
         String graph = request.getHeader().getGraph();
-        // 所有Leader分区
+        // 所有 Leader 分区
         List<Integer> ids = storeService.getGraphLeaderPartitionIds(graph);
         // 按分区拆分数据
         Map<Integer, TableReq> groups = new HashMap<>();
@@ -390,7 +390,7 @@ public class HgStoreSessionImpl extends HgStoreSessionGrpc.HgStoreSessionImplBas
             groups.put(id, request);
         });
 
-        // 发给不同的raft执行
+        // 发给不同的 raft 执行
         BatchGrpcClosure<FeedbackRes> closure = new BatchGrpcClosure<>(groups.size());
         groups.forEach((partition, entries) -> {
             storeService.addRaftTask(HgStoreNodeService.TABLE_OP, graph, partition,
@@ -470,7 +470,7 @@ public class HgStoreSessionImpl extends HgStoreSessionGrpc.HgStoreSessionImplBas
         }
 
         String graph = request.getHeader().getGraph();
-        // 所有Leader分区
+        // 所有 Leader 分区
         List<Integer> ids = storeService.getGraphLeaderPartitionIds(graph);
         // 按分区拆分数据
         Map<Integer, GraphReq> groups = new HashMap<>();
@@ -479,7 +479,7 @@ public class HgStoreSessionImpl extends HgStoreSessionGrpc.HgStoreSessionImplBas
             groups.put(id, request);
         });
 
-        // 发给不同的raft执行
+        // 发给不同的 raft 执行
         BatchGrpcClosure<FeedbackRes> closure = new BatchGrpcClosure<>(groups.size());
         groups.forEach((partition, entries) -> {
             storeService.addRaftTask(HgStoreNodeService.GRAPH_OP, graph, partition,

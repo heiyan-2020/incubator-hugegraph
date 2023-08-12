@@ -46,7 +46,7 @@ public abstract class DiscoveryClient implements Closeable, Discoverable {
     protected int period; //心跳周期
     LinkedList<String> pdAddresses = new LinkedList<>();
     ReentrantReadWriteLock readWriteLock = new ReentrantReadWriteLock();
-    private volatile int currentIndex; // 当前在用pd地址位置
+    private volatile int currentIndex; // 当前在用 pd 地址位置
     private int maxTime = 6;
     private ManagedChannel channel = null;
     private DiscoveryServiceGrpc.DiscoveryServiceBlockingStub registerStub;
@@ -87,7 +87,7 @@ public abstract class DiscoveryClient implements Closeable, Discoverable {
     }
 
     /***
-     * 按照pd列表重置stub
+     * 按照 pd 列表重置 stub
      */
     private void resetStub() {
         String errLog = null;
@@ -114,7 +114,7 @@ public abstract class DiscoveryClient implements Closeable, Discoverable {
     }
 
     /***
-     * 按照某个pd的地址重置channel和stub
+     * 按照某个 pd 的地址重置 channel 和 stub
      * @param singleAddress
      * @throws PDException
      */

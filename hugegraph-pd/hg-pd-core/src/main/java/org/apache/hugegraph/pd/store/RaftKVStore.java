@@ -80,7 +80,7 @@ public class RaftKVStore implements HgKVStore, RaftTaskHandler {
     }
 
     /**
-     * 查询可以不走raft，直接读取
+     * 查询可以不走 raft，直接读取
      */
     @Override
     public byte[] get(byte[] key) throws PDException {
@@ -182,7 +182,7 @@ public class RaftKVStore implements HgKVStore, RaftTaskHandler {
     }
 
     /**
-     * 需要走Raft的真实操作
+     * 需要走 Raft 的真实操作
      */
     private void doPut(byte[] key, byte[] value) throws PDException {
 

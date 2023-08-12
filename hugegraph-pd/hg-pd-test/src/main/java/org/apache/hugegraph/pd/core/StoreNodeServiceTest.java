@@ -54,7 +54,7 @@ public class StoreNodeServiceTest extends BaseCoreTest {
                                                                          .build())
                                              .build();
             stores[i] = storeService.register(store);
-            System.out.println("新注册store， id = " + stores[i].getId());
+            System.out.println("新注册 store，id = " + stores[i].getId());
         }
         Assert.assertEquals(count, storeService.getStores("").size());
 
@@ -71,19 +71,19 @@ public class StoreNodeServiceTest extends BaseCoreTest {
                                          .setGraphName("defaultGH")
                                          .setPartitionCount(10)
                                          .build();
-        // 分配shard
+        // 分配 shard
         List<Metapb.Shard> shards = storeService.allocShards(graph, 1);
 
 
         Assert.assertEquals(3, shards.size());
-        // 设置leader
+        // 设置 leader
         Assert.assertEquals(pdConfig.getPartition().getTotalCount(),
                             storeService.getShardGroups().size());
         Metapb.Shard leader = Metapb.Shard.newBuilder(shards.get(0))
                                           .setRole(Metapb.ShardRole.Leader).build();
         shards = new ArrayList<>(shards);
         shards.set(0, leader);
-        // 增加shard
+        // 增加 shard
         pdConfig.getPartition().setShardCount(5);
 
         Metapb.ShardGroup shardGroup = Metapb.ShardGroup.newBuilder()
@@ -92,19 +92,19 @@ public class StoreNodeServiceTest extends BaseCoreTest {
         shards = storeService.reallocShards(shardGroup);
 
         Assert.assertEquals(5, shards.size());
-        // 减少shard
+        // 减少 shard
         pdConfig.getPartition().setShardCount(3);
         shards = storeService.reallocShards(shardGroup);
         Assert.assertEquals(3, shards.size());
-        // 包含leader，leader不能被删除
+        // 包含 leader，leader 不能被删除
         Assert.assertTrue(shards.contains(leader));
 
-        // 减少shard
+        // 减少 shard
         pdConfig.getPartition().setShardCount(1);
         graph = Metapb.Graph.newBuilder(graph).build();
         shards = storeService.reallocShards(shardGroup);
         Assert.assertEquals(1, shards.size());
-        // 包含leader，leader不能被删除
+        // 包含 leader，leader 不能被删除
         Assert.assertTrue(shards.contains(leader));
 
         for (Metapb.Store store : stores) {

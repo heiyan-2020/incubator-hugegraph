@@ -38,7 +38,7 @@ public class PdInstructionSubject extends AbstractObserverSubject {
     }
 
     /**
-     * pd单纯的向pulse发送的指令，不接收对应的notice
+     * pd 单纯的向 pulse 发送的指令，不接收对应的 notice
      *
      * @return null
      */

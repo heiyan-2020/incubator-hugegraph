@@ -113,7 +113,7 @@ public class StoreAPI extends API {
     }
 
     /**
-     * 返回每个store上的leader
+     * 返回每个 store 上的 leader
      *
      * @return
      */
@@ -185,7 +185,7 @@ public class StoreAPI extends API {
     @GetMapping(value = "store/{storeId}", produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public RestApiResponse getStore(@PathVariable long storeId) {
-        //获取store的统计信息
+        //获取 store 的统计信息
         Metapb.Store store = null;
         try {
             store = pdRestService.getStore(storeId);
@@ -261,7 +261,7 @@ public class StoreAPI extends API {
 
     @Data
     class StoreStatistics {
-        //store的统计信息
+        //store 的统计信息
         long storeId;
         String address;
         String raftAddress;
@@ -297,7 +297,7 @@ public class StoreAPI extends API {
                     deployPath = deployPath.substring(prefix.length());
                 }
                 if ((deployPath != null) && (deployPath.contains(".jar"))) {
-                    // 去掉jar包之后的信息
+                    // 去掉 jar 包之后的信息
                     deployPath = deployPath.substring(0, deployPath.indexOf(".jar") + 4);
                 }
                 dataPath = store.getDataPath();
@@ -321,12 +321,12 @@ public class StoreAPI extends API {
                 List<Metapb.GraphStats> graphStatsList = store.getStats().getGraphStatsList();
                 List<Partition> partitionStatsList = new ArrayList<>(); // 保存分区信息
                 HashSet<String> graphNameSet = new HashSet<>(); // 用于统计图的数量
-                HashSet<Integer> leaderPartitionIds = new HashSet<Integer>(); // 统计leader的分区数量
-                // 构造分区信息(store中存储的图信息)
+                HashSet<Integer> leaderPartitionIds = new HashSet<Integer>(); // 统计 leader 的分区数量
+                // 构造分区信息 (store 中存储的图信息)
                 Map<Integer, Long> partition2KeyCount = new HashMap<>();
                 for (Metapb.GraphStats graphStats : graphStatsList) {
                     String graphName = graphStats.getGraphName();
-                    // 图名只保留/g /m /s前面的部分
+                    // 图名只保留/g /m /s 前面的部分
                     final int postfixLength = 2;
                     graphNameSet.add(graphName.substring(0, graphName.length() - postfixLength));
                     if ((graphStats.getGraphName() != null) &&
@@ -334,7 +334,7 @@ public class StoreAPI extends API {
                         Partition pt = new Partition(graphStats);
                         partitionStatsList.add(pt);
                     }
-                    // 统计每个分区的keyCount
+                    // 统计每个分区的 keyCount
                     partition2KeyCount.put(graphStats.getPartitionId(),
                                            graphStats.getApproximateKeys());
                     if (graphStats.getRole() == Metapb.ShardRole.Leader) {

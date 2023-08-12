@@ -80,7 +80,7 @@ public class HgStoreStateMachine extends StateMachineAdapter {
             try {
                 for (RaftTaskHandler taskHandler : taskHandlers) {
                     if (done != null) {
-                        // Leader分支，本地调用
+                        // Leader 分支，本地调用
                         if (taskHandler.invoke(groupId, done.op.getOp(), done.op.getReq(),
                                                done.closure)) {
                             done.run(Status.OK());

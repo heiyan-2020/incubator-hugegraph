@@ -34,14 +34,14 @@ import lombok.Data;
 
 
 /**
- * PD配置文件
+ * PD 配置文件
  */
 @Data
 @Component
 public class PDConfig {
 
     @Value("${pd.cluster_id:1}")
-    private long clusterId;   // 集群ID
+    private long clusterId;   // 集群 ID
 
     @Value("${pd.patrol-interval:300}")
     private long patrolInterval = 300;  //巡查任务时间间隔
@@ -50,7 +50,7 @@ public class PDConfig {
     @Value("${pd.initial-store-count:3}")
     private int minStoreCount;
 
-    // 初始store列表，该列表内的store自动激活
+    // 初始 store 列表，该列表内的 store 自动激活
     @Value("${pd.initial-store-list: ''}")
     private String initialStoreList;
     @Value("${grpc.host}")
@@ -86,7 +86,7 @@ public class PDConfig {
 
     /**
      * 初始分区数量
-     * Store数量 * 每Store最大副本数 /每分区副本数
+     * Store 数量 * 每 Store 最大副本数 /每分区副本数
      *
      * @return
      */
@@ -143,7 +143,7 @@ public class PDConfig {
         private int port;
 
         @Value("${pd.cluster_id:1}")
-        private long clusterId;   // 集群ID
+        private long clusterId;   // 集群 ID
         @Value("${grpc.port}")
         private int grpcPort;
 
@@ -246,7 +246,7 @@ public class PDConfig {
     public class Partition {
         private int totalCount = 0;
 
-        // 每个Store最大副本数
+        // 每个 Store 最大副本数
         @Value("${partition.store-max-shard-count:24}")
         private int maxShardsPerStore = 24;
 

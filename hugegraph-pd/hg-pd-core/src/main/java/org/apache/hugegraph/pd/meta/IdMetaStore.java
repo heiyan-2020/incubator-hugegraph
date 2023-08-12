@@ -35,7 +35,7 @@ import com.caucho.hessian.io.Hessian2Output;
 import lombok.extern.slf4j.Slf4j;
 
 /**
- * 自增id的实现类
+ * 自增 id 的实现类
  */
 @Slf4j
 public class IdMetaStore extends MetadataRocksDBStore {
@@ -68,7 +68,7 @@ public class IdMetaStore extends MetadataRocksDBStore {
     }
 
     /**
-     * 获取自增id
+     * 获取自增 id
      *
      * @param key
      * @param delta
@@ -109,7 +109,7 @@ public class IdMetaStore extends MetadataRocksDBStore {
     }
 
     /**
-     * 在删除name标识的cid的24小时内重复申请同一个name的cid保持同一值
+     * 在删除 name 标识的 cid 的 24 小时内重复申请同一个 name 的 cid 保持同一值
      * 如此设计为了防止缓存的不一致，造成数据错误
      *
      * @param key
@@ -119,7 +119,7 @@ public class IdMetaStore extends MetadataRocksDBStore {
      * @throws PDException
      */
     public long getCId(String key, String name, long max) throws PDException {
-        // 检测是否有过期的cid，删除图的频率比较低，此处对性能影响不大
+        // 检测是否有过期的 cid，删除图的频率比较低，此处对性能影响不大
         byte[] delKeyPrefix = (CID_DEL_SLOT_PREFIX +
                                key + SEPARATOR).getBytes(Charset.defaultCharset());
         synchronized (this) {
@@ -137,7 +137,7 @@ public class IdMetaStore extends MetadataRocksDBStore {
                 }
             });
 
-            // 从延时删除队列恢复Key
+            // 从延时删除队列恢复 Key
             byte[] cidDelayKey = getCIDDelayKey(key, name);
             byte[] value = getOne(cidDelayKey);
             if (value != null) {
@@ -160,10 +160,10 @@ public class IdMetaStore extends MetadataRocksDBStore {
     }
 
     /**
-     * 获取自增循环不重复id, 达到上限后从0开始自增
+     * 获取自增循环不重复 id, 达到上限后从 0 开始自增
      *
      * @param key
-     * @param max id上限，达到该值后，重新从0开始自增
+     * @param max id 上限，达到该值后，重新从 0 开始自增
      * @return
      * @throws PDException
      */
@@ -174,7 +174,7 @@ public class IdMetaStore extends MetadataRocksDBStore {
             byte[] bs = getOne(keyBs);
             long current = bs != null ? bytesToLong(bs) : 0L;
             long last = current == 0 ? max - 1 : current - 1;
-            {   // 查找一个未使用的cid
+            {   // 查找一个未使用的 cid
                 List<KV> kvs = scanRange(genCIDSlotKey(key, current), genCIDSlotKey(key, max));
                 for (KV kv : kvs) {
                     if (current == bytesToLong(kv.getValue())) {
@@ -220,7 +220,7 @@ public class IdMetaStore extends MetadataRocksDBStore {
     }
 
     /**
-     * 删除一个循环id，释放id值
+     * 删除一个循环 id，释放 id 值
      *
      * @param key
      * @param cid

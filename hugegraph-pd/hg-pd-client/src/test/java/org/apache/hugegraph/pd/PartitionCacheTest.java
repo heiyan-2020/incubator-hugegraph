@@ -54,10 +54,10 @@ public class PartitionCacheTest {
     // @Test
     public void test1() {
         Map<String, RangeMap<Long, Integer>> keyToPartIdCache = new HashMap<>();
-        // graphName + PartitionID组成key
+        // graphName + PartitionID 组成 key
         Map<String, KVPair<Metapb.Partition, Metapb.Shard>> partitionCache = new HashMap<>();
 
-        // 缓存全部Store，用于全库查询，需要优化
+        // 缓存全部 Store，用于全库查询，需要优化
         Map<String, List<Metapb.Store>> allStoresCache = new HashMap<>();
 
         keyToPartIdCache.put("a", TreeRangeMap.create());

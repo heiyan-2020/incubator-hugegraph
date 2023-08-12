@@ -60,7 +60,7 @@ public class ScanBatchResponse implements StreamObserver<ScanStreamBatchReq> {
     private ScanIterator iterator;
     // 下一次发送的序号
     private volatile int seqNo;
-    // Client已消费的序号
+    // Client 已消费的序号
     private volatile int clientSeqNo;
     // 已经发送的条目数
     private volatile long count;

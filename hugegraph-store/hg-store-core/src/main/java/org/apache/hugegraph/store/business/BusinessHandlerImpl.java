@@ -907,7 +907,7 @@ public class BusinessHandlerImpl implements BusinessHandler {
             return new Tx() {
                 @Override
                 public void commit() throws HgStoreException {
-                    op.commit();  // commit发生异常后，必须调用rollback，否则造成锁未释放
+                    op.commit();  // commit 发生异常后，必须调用 rollback，否则造成锁未释放
                     dbSession.close();
                 }
 

@@ -31,7 +31,7 @@ public class Partition implements Cloneable {
     private long startKey;
     private long endKey;
     private long version;
-    // shardlist版本，shardlist每次改变加1
+    // shardlist 版本，shardlist 每次改变加 1
     // private long confVer;
 
     private Metapb.PartitionState workState;

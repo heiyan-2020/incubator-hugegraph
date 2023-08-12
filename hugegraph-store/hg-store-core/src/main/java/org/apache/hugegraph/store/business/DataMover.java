@@ -37,7 +37,7 @@ public interface DataMover {
 
 
     /**
-     * 拷贝分区source内的数据到其他分区targets
+     * 拷贝分区 source 内的数据到其他分区 targets
      * 一个分区，迁移到多个分区
      *
      * @param source  source partition
@@ -48,7 +48,7 @@ public interface DataMover {
     Status moveData(Metapb.Partition source, List<Metapb.Partition> targets) throws Exception;
 
     /**
-     * 将source target的数据全部拷贝到target上
+     * 将 source target 的数据全部拷贝到 target 上
      * 从一个分区迁移到另外一个分区
      *
      * @param source source partition
@@ -66,7 +66,7 @@ public interface DataMover {
     UpdatePartitionResponse updatePartitionRange(Metapb.Partition partition, int startKey,
                                                  int endKey);
 
-    // 清理分区partition内的无效数据
+    // 清理分区 partition 内的无效数据
     void cleanData(Metapb.Partition partition);
 
     // 写入数据

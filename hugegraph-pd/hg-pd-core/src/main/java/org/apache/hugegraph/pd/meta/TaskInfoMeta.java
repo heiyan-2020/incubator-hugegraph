@@ -114,7 +114,7 @@ public class TaskInfoMeta extends MetadataRocksDBStore {
     }
 
     /**
-     * 按照prefix删除迁移任务，一次分组的
+     * 按照 prefix 删除迁移任务，一次分组的
      *
      * @param graphName 图名称
      * @throws PDException io error

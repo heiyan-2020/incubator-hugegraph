@@ -44,7 +44,7 @@ import io.grpc.stub.StreamObserver;
 import lombok.extern.slf4j.Slf4j;
 
 /**
- * 批量处理的grpc回调封装类
+ * 批量处理的 grpc 回调封装类
  *
  * @param <V>
  */
@@ -94,7 +94,7 @@ class BatchGrpcClosure<V> {
     }
 
     /**
-     * 不使用计数器latch
+     * 不使用计数器 latch
      *
      * @return
      */
@@ -158,7 +158,7 @@ class BatchGrpcClosure<V> {
     }
 
     /**
-     * 等待raft执行结束，返回结果给grpc
+     * 等待 raft 执行结束，返回结果给 grpc
      */
     public void waitFinish(StreamObserver<V> observer, Function<List<V>, V> ok, long timeout) {
         try {

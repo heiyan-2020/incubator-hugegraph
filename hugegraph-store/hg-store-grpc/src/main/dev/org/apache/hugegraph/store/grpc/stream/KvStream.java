@@ -24,7 +24,7 @@ import java.nio.ByteBuffer;
 import java.util.function.Consumer;
 
 /**
- * 为了提升性能，复用内存，减少gc回收，需要重写KvStream.writeTo方法
+ * 为了提升性能，复用内存，减少 gc 回收，需要重写 KvStream.writeTo 方法
  */
 public final class KvStream extends
                             com.google.protobuf.GeneratedMessageV3 implements

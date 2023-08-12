@@ -68,9 +68,9 @@ public class GraphStoreImpl extends GraphStoreImplBase {
 
 
     /**
-     * 流式回复消息，每个消息带有seqNo
-     * 客户端每消费一个消息，应答一个seqNo
-     * 服务端根据客户端的seqNo决定发送几个数据包
+     * 流式回复消息，每个消息带有 seqNo
+     * 客户端每消费一个消息，应答一个 seqNo
+     * 服务端根据客户端的 seqNo 决定发送几个数据包
      *
      * @param ro
      * @return

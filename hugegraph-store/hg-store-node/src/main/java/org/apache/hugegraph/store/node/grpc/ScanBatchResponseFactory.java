@@ -53,7 +53,7 @@ public class ScanBatchResponseFactory {
     }
 
     /**
-     * 检查是否Stream是否活跃，超时的Stream及时关闭
+     * 检查是否 Stream 是否活跃，超时的 Stream 及时关闭
      */
     public void checkStreamActive() {
         streamObservers.forEach(streamObserver -> {

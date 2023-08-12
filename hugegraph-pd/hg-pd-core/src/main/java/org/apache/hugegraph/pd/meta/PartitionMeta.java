@@ -68,7 +68,7 @@ public class PartitionMeta extends MetadataRocksDBStore {
     }
 
     /**
-     * partition 和 shard group分开存储，再init的时候，需要加载进来
+     * partition 和 shard group 分开存储，再 init 的时候，需要加载进来
      *
      * @throws PDException
      */
@@ -88,7 +88,7 @@ public class PartitionMeta extends MetadataRocksDBStore {
     }
 
     /**
-     * 根据id查找分区 (先从缓存找，再到数据库中找）
+     * 根据 id 查找分区 (先从缓存找，再到数据库中找）
      *
      * @param graphName
      * @param partId
@@ -123,7 +123,7 @@ public class PartitionMeta extends MetadataRocksDBStore {
     }
 
     /**
-     * 根据code查找分区
+     * 根据 code 查找分区
      */
     public Metapb.Partition getPartitionByCode(String graphName, long code) throws PDException {
         var pair = cache.getPartitionByCode(graphName, code);
@@ -180,7 +180,7 @@ public class PartitionMeta extends MetadataRocksDBStore {
 
     /**
      * 检查数据库，是否存在对应的图，不存在，则创建。
-     * 更新partition的 version, conf version 和 shard list
+     * 更新 partition 的 version, conf version 和 shard list
      *
      * @param partition
      * @return
@@ -281,7 +281,7 @@ public class PartitionMeta extends MetadataRocksDBStore {
     }
 
     /**
-     * 删除图，并删除图id
+     * 删除图，并删除图 id
      */
     public long removeGraph(String graphName) throws PDException {
         byte[] key = MetadataKeyHelper.getGraphKey(graphName);

@@ -34,7 +34,7 @@ import com.alipay.sofa.jraft.rpc.RpcServer;
 import lombok.extern.slf4j.Slf4j;
 
 /**
- * 快照同步rpc处理器，leader批量入库完成后，基于seqnum读取新增的kv,批量发送给follower.
+ * 快照同步 rpc 处理器，leader 批量入库完成后，基于 seqnum 读取新增的 kv，批量发送给 follower.
  *
  * @param <T>
  */

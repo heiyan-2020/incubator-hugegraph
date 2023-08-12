@@ -49,7 +49,7 @@ public class IdService {
     }
 
     /**
-     * 获取自增循环不重复id, 达到上限后从0开始自增.自动跳过正在使用的cid
+     * 获取自增循环不重复 id, 达到上限后从 0 开始自增。自动跳过正在使用的 cid
      *
      * @param key
      * @param max
@@ -65,7 +65,7 @@ public class IdService {
     }
 
     /**
-     * 删除一个自增循环id
+     * 删除一个自增循环 id
      *
      * @param key
      * @param cid

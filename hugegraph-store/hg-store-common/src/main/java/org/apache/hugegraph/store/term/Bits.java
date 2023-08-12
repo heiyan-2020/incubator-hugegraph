@@ -21,7 +21,7 @@ import java.nio.ByteBuffer;
 
 public class Bits {
     /**
-     * 大头字节序写入short
+     * 大头字节序写入 short
      */
     public static void putShort(byte[] buf, int offSet, int x) {
         buf[offSet] = (byte) (x >> 8);
@@ -36,7 +36,7 @@ public class Bits {
     }
 
     /**
-     * 大头字节序读取short
+     * 大头字节序读取 short
      */
     public static int getShort(byte[] buf, int offSet) {
         int x = buf[offSet] & 0xff;

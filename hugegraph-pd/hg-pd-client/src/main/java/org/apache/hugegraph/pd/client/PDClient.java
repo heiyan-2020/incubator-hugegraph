@@ -53,7 +53,7 @@ import io.grpc.stub.AbstractBlockingStub;
 import lombok.extern.slf4j.Slf4j;
 
 /**
- * PD客户端实现类
+ * PD 客户端实现类
  *
  * @author yanjinbing
  */
@@ -79,7 +79,7 @@ public class PDClient {
     }
 
     /**
-     * 创建PDClient对象，并初始化stub
+     * 创建 PDClient 对象，并初始化 stub
      *
      * @param config
      * @return
@@ -309,7 +309,7 @@ public class PDClient {
     }
 
     /**
-     * Store注册，返回storeID，初次注册会返回新ID
+     * Store 注册，返回 storeID，初次注册会返回新 ID
      *
      * @param store
      * @return
@@ -326,7 +326,7 @@ public class PDClient {
     }
 
     /**
-     * 根据storeId返回Store对象
+     * 根据 storeId 返回 Store 对象
      *
      * @param storeId
      * @return
@@ -349,7 +349,7 @@ public class PDClient {
     }
 
     /**
-     * 更新Store信息，包括上下线等
+     * 更新 Store 信息，包括上下线等
      *
      * @param store
      * @return
@@ -369,7 +369,7 @@ public class PDClient {
     }
 
     /**
-     * 返回活跃的Store
+     * 返回活跃的 Store
      *
      * @param graphName
      * @return
@@ -401,7 +401,7 @@ public class PDClient {
     }
 
     /**
-     * 返回活跃的Store
+     * 返回活跃的 Store
      *
      * @param graphName
      * @return
@@ -419,7 +419,7 @@ public class PDClient {
     }
 
     /**
-     * Store心跳，定期调用，保持在线状态
+     * Store 心跳，定期调用，保持在线状态
      *
      * @param stats
      * @throws PDException
@@ -453,7 +453,7 @@ public class PDClient {
     }
 
     /**
-     * 查询Key所属分区信息
+     * 查询 Key 所属分区信息
      *
      * @param graphName
      * @param key
@@ -462,7 +462,7 @@ public class PDClient {
      */
     public KVPair<Metapb.Partition, Metapb.Shard> getPartition(String graphName, byte[] key) throws
                                                                                              PDException {
-        // 先查cache，cache没有命中，在调用PD
+        // 先查 cache，cache 没有命中，在调用 PD
         KVPair<Metapb.Partition, Metapb.Shard> partShard = cache.getPartitionByKey(graphName, key);
         partShard = getKvPair(graphName, key, partShard);
         return partShard;
@@ -478,7 +478,7 @@ public class PDClient {
     }
 
     /**
-     * 根据hashcode查询所属分区信息
+     * 根据 hashcode 查询所属分区信息
      *
      * @param graphName
      * @param hashCode
@@ -488,7 +488,7 @@ public class PDClient {
     public KVPair<Metapb.Partition, Metapb.Shard> getPartitionByCode(String graphName,
                                                                      long hashCode)
             throws PDException {
-        // 先查cache，cache没有命中，在调用PD
+        // 先查 cache，cache 没有命中，在调用 PD
         KVPair<Metapb.Partition, Metapb.Shard> partShard =
                 cache.getPartitionByCode(graphName, hashCode);
         if (partShard == null) {
@@ -521,14 +521,14 @@ public class PDClient {
     }
 
     /**
-     * 获取Key的哈希值
+     * 获取 Key 的哈希值
      */
     public int keyToCode(String graphName, byte[] key) {
         return PartitionUtils.calcHashcode(key);
     }
 
     /**
-     * 根据分区id返回分区信息, RPC请求
+     * 根据分区 id 返回分区信息，RPC 请求
      *
      * @param graphName
      * @param partId
@@ -606,7 +606,7 @@ public class PDClient {
     }
 
     /**
-     * 返回startKey和endKey跨越的所有分区信息
+     * 返回 startKey 和 endKey 跨越的所有分区信息
      *
      * @param graphName
      * @param startKey
@@ -656,7 +656,7 @@ public class PDClient {
     }
 
     /**
-     * 查找指定store上的指定partitionId
+     * 查找指定 store 上的指定 partitionId
      *
      * @return
      * @throws PDException
@@ -791,7 +791,7 @@ public class PDClient {
     }
 
     /**
-     * Hugegraph server 调用，Leader发生改变，更新缓存
+     * Hugegraph server 调用，Leader 发生改变，更新缓存
      */
     public void updatePartitionLeader(String graphName, int partId, long leaderStoreId) {
         KVPair<Metapb.Partition, Metapb.Shard> partShard = null;
@@ -818,7 +818,7 @@ public class PDClient {
 
                 if (config.isEnableCache()) {
                     if (shard == null) {
-                        // 分区的shard中未找到leader，说明分区发生了迁移
+                        // 分区的 shard 中未找到 leader，说明分区发生了迁移
                         cache.removePartition(graphName, partId);
                     }
                 }
@@ -829,7 +829,7 @@ public class PDClient {
     }
 
     /**
-     * Hugegraph-store调用，更新缓存
+     * Hugegraph-store 调用，更新缓存
      *
      * @param partition
      */
@@ -908,7 +908,7 @@ public class PDClient {
                 StatusRuntimeException se = (StatusRuntimeException) e;
                 //se.getStatus() == Status.UNAVAILABLE &&
                 if (retry < stubProxy.getHostCount()) {
-                    // 网络不通，关掉之前连接，换host重新连接
+                    // 网络不通，关掉之前连接，换 host 重新连接
                     closeStub(true);
                     return blockingUnaryCall(method, req, ++retry);
                 }
@@ -939,7 +939,7 @@ public class PDClient {
     }
 
     /**
-     * 返回Store状态信息
+     * 返回 Store 状态信息
      */
     public List<Metapb.Store> getStoreStatus(boolean offlineExcluded) throws PDException {
         Pdpb.GetAllStoresRequest request = Pdpb.GetAllStoresRequest.newBuilder()
@@ -1033,7 +1033,7 @@ public class PDClient {
 
     /**
      * 工作模式
-     * Auto：自动分裂，每个Store上分区数达到最大值
+     * Auto：自动分裂，每个 Store 上分区数达到最大值
      *
      * @throws PDException
      */
@@ -1048,8 +1048,8 @@ public class PDClient {
 
     /**
      * 工作模式
-     * Auto：自动分裂，每个Store上分区数达到最大值
-     * Expert:专家模式，需要指定splitParams
+     * Auto：自动分裂，每个 Store 上分区数达到最大值
+     * Expert:专家模式，需要指定 splitParams
      *
      * @param mode
      * @param params
@@ -1076,7 +1076,7 @@ public class PDClient {
     }
 
     /**
-     * 自动转移，达到每个Store上分区数量相同
+     * 自动转移，达到每个 Store 上分区数量相同
      *
      * @throws PDException
      */
@@ -1092,8 +1092,8 @@ public class PDClient {
 
     /**
      * //工作模式
-     * //  Auto：自动转移，达到每个Store上分区数量相同
-     * //  Expert:专家模式，需要指定transferParams
+     * //  Auto：自动转移，达到每个 Store 上分区数量相同
+     * //  Expert:专家模式，需要指定 transferParams
      *
      * @param mode
      * @param params
@@ -1129,7 +1129,7 @@ public class PDClient {
     }
 
     /**
-     * 平衡不同store中leader的数量
+     * 平衡不同 store 中 leader 的数量
      */
     public void balanceLeaders() throws PDException {
         Pdpb.BalanceLeadersRequest request = Pdpb.BalanceLeadersRequest.newBuilder()
@@ -1140,7 +1140,7 @@ public class PDClient {
     }
 
     /**
-     * 从pd中删除store
+     * 从 pd 中删除 store
      */
     public Metapb.Store delStore(long storeId) throws PDException {
         Pdpb.DetStoreRequest request = Pdpb.DetStoreRequest.newBuilder()
@@ -1153,7 +1153,7 @@ public class PDClient {
     }
 
     /**
-     * 对rocksdb整体进行compaction
+     * 对 rocksdb 整体进行 compaction
      *
      * @throws PDException
      */
@@ -1167,7 +1167,7 @@ public class PDClient {
     }
 
     /**
-     * 对rocksdb指定表进行compaction
+     * 对 rocksdb 指定表进行 compaction
      *
      * @param tableName
      * @throws PDException
@@ -1183,7 +1183,7 @@ public class PDClient {
     }
 
     /**
-     * 分区合并，把当前的分区缩容至toCount个
+     * 分区合并，把当前的分区缩容至 toCount 个
      *
      * @param toCount 缩容到分区的个数
      * @throws PDException
@@ -1199,7 +1199,7 @@ public class PDClient {
     }
 
     /**
-     * 将单图缩容到 toCount个
+     * 将单图缩容到 toCount 个
      *
      * @param graphName graph name
      * @param toCount   target count
@@ -1229,7 +1229,7 @@ public class PDClient {
     }
 
     /**
-     * 用于 store的 shard list重建
+     * 用于 store 的 shard list 重建
      *
      * @param groupId shard group id
      * @param shards  shard list，delete when shards size is 0

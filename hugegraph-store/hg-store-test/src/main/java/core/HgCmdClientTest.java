@@ -91,8 +91,8 @@ public class HgCmdClientTest {
     }
 
     public static Long getId() {
-        // 如果需要更长 或者更大冗余空间, 只需要 time * 10^n   即可
-        // 当前可保证1毫秒 生成 10000条不重复
+        // 如果需要更长 或者更大冗余空间，只需要 time * 10^n   即可
+        // 当前可保证 1 毫秒 生成 10000 条不重复
         Long time = Long.valueOf(new SimpleDateFormat("HHmmssSSS").format(new Date())) * 10000 +
                     (long) (Math.random() * 100);
 //        Long time = Long.valueOf(new SimpleDateFormat("MMddhhmmssSSS").format(new Date())

@@ -52,7 +52,7 @@ import lombok.extern.slf4j.Slf4j;
 
 
 /**
- * 使用pd，支持raft
+ * 使用 pd，支持 raft
  * 读取文件并多线程进行入库
  */
 @Slf4j
@@ -229,7 +229,7 @@ public class HgThread2DB {
 
             String strLine = null;
             String tableName = HgCliUtil.TABLE_NAME;
-            // 积攒到多少个后执行线程入库,10万
+            // 积攒到多少个后执行线程入库，10 万
             int maxlist = 100000;
             List<String> keys = new ArrayList<>(maxlist);
             metrics = MetricX.ofStart();
@@ -238,7 +238,7 @@ public class HgThread2DB {
                     keys.add(strLine);
                     dataCount++;
 
-                    // 读取文件中的10000条数据，启一个线程入库
+                    // 读取文件中的 10000 条数据，启一个线程入库
                     if (dataCount % maxlist == 0) {
                         List<String> finalKeys = keys;
                         Runnable task = new Runnable() {
@@ -315,7 +315,7 @@ public class HgThread2DB {
         }
         metrics.end();
         log.info("*************************************************");
-        log.info("  主进程执行时间:" + metrics.past() / 1000 + "秒，一共执行：" + dataCount + "条");
+        log.info("  主进程执行时间：" + metrics.past() / 1000 + "秒，一共执行：" + dataCount + "条");
         log.info("*************************************************");
         System.out.println("   主进程执行时间    " + metrics.past() / 1000 + "秒");
         System.out.println("-----主进程执行结束---------");
@@ -337,7 +337,7 @@ public class HgThread2DB {
 
         String strLine = null;
         String tableName = HgCliUtil.TABLE_NAME;
-        // 积攒到多少个后执行线程入库,10万
+        // 积攒到多少个后执行线程入库，10 万
         int maxlist = 100000;
         List<String> keys = new ArrayList<>(maxlist);
         for (int x = 0; x < 10000000; x++) {
@@ -388,15 +388,15 @@ public class HgThread2DB {
 
         metrics.end();
         log.info("*************************************************");
-        log.info("  主进程执行时间:" + metrics.past() / 1000 + "秒，一共执行：" + dataCount + "条");
+        log.info("  主进程执行时间：" + metrics.past() / 1000 + "秒，一共执行：" + dataCount + "条");
         log.info("*************************************************");
         System.out.println("   主进程执行时间    " + metrics.past() / 1000 + "秒");
         System.out.println("-----主进程执行结束---------");
     }
 
     public String getLong() {
-        //如果需要更长 或者更大冗余空间, 只需要 time * 10^n   即可
-        //当前可保证1毫秒 生成 10000条不重复
+        //如果需要更长 或者更大冗余空间，只需要 time * 10^n   即可
+        //当前可保证 1 毫秒 生成 10000 条不重复
         return String.format("%019x", longId.getAndIncrement());
     }
 
@@ -450,7 +450,7 @@ public class HgThread2DB {
                                     }
                                 }
                             }
-                            // 达到1万个点后，去查询一次
+                            // 达到 1 万个点后，去查询一次
                             if (newQueryList.size() > 10000 && listQueue.size() < 10000) {
                                 listQueue.put(newQueryList);
                                 insertQueueCount++;
@@ -462,7 +462,7 @@ public class HgThread2DB {
                         }
                     }
                 }
-                // 一次查询如果不够1万，单独提交一次查询，确保所有的结果都能执行查询
+                // 一次查询如果不够 1 万，单独提交一次查询，确保所有的结果都能执行查询
                 if (!newQueryList.isEmpty() && listQueue.size() < 1000) {
                     listQueue.put(newQueryList);
                 }
@@ -479,7 +479,7 @@ public class HgThread2DB {
     /**
      * 多线程查询
      *
-     * @param point     起始查询点，后续根据这个点查询到的value做为下一次的查询条件进行迭代
+     * @param point     起始查询点，后续根据这个点查询到的 value 做为下一次的查询条件进行迭代
      * @param scanCount 允许启动的线程数量
      * @throws IOException
      * @throws InterruptedException
@@ -578,7 +578,7 @@ public class HgThread2DB {
 
         metrics.end();
         log.info("*************************************************");
-        log.info("  主进程执行时间:" + metrics.past() / 1000 + "秒; 查询：" + totalQueryCount.get()
+        log.info("  主进程执行时间：" + metrics.past() / 1000 + "秒; 查询：" + totalQueryCount.get()
                  + "次，qps:" + totalQueryCount.get() * 1000 / metrics.past());
         log.info("*************************************************");
         System.out.println("-----主进程执行结束---------");

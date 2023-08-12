@@ -73,7 +73,7 @@ public class RaftRocksdbOptions {
         DBOptions dbOptions = StorageOptionsFactory.getDefaultRocksDBOptions();
         dbOptions.setEnv(rocksdbConfig.getEnv());
 
-        // raft rocksdb数量固定，通过max_write_buffer_number可以控制
+        // raft rocksdb 数量固定，通过 max_write_buffer_number 可以控制
         //dbOptions.setWriteBufferManager(rocksdbConfig.getBufferManager());
         dbOptions.setUnorderedWrite(true);
         StorageOptionsFactory.registerRocksDBOptions(RocksDBLogStorage.class,

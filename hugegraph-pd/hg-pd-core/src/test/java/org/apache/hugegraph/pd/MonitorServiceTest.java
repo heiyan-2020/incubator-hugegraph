@@ -90,7 +90,7 @@ public class MonitorServiceTest {
                                                                          .build())
                                              .build();
             stores[i] = storeService.register(store);
-            System.out.println("新注册store， id = " + Long.toHexString(stores[i].getId()));
+            System.out.println("新注册 store，id = " + Long.toHexString(stores[i].getId()));
         }
         Metapb.Graph graph = Metapb.Graph.newBuilder()
                                          .setGraphName("defaultGH")

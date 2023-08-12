@@ -16,7 +16,7 @@
 #
 
 pdserver:
-  # pd服务地址，多个pd地址用逗号分割
+  # pd 服务地址，多个 pd 地址用逗号分割
   address: localhost:8686
 
 management:

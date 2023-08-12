@@ -127,7 +127,7 @@ public class HgCmdClient {
     }
 
     /**
-     * 通过raft更新本地分区信息
+     * 通过 raft 更新本地分区信息
      *
      * @param request
      * @return
@@ -137,7 +137,7 @@ public class HgCmdClient {
     }
 
     /**
-     * 查找Leader，错误重试，处理Leader重定向
+     * 查找 Leader，错误重试，处理 Leader 重定向
      *
      * @param request
      * @return
@@ -163,7 +163,7 @@ public class HgCmdClient {
                     } else if (HgCmdProcessor.Status.LEADER_REDIRECT == response.getStatus()
                                && response.partitionLeaders != null
                     ) {
-                        // 当返回leader 漂移，并且partitionLeaders 不为空时，需要重新设置leader
+                        // 当返回 leader 漂移，并且 partitionLeaders 不为空时，需要重新设置 leader
                     } else {
                         log.error(
                                 "HgCmdClient tryInternalCallSyncWithRpc error msg {} leaders is {}",

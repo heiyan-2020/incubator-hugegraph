@@ -175,7 +175,7 @@ public class GraphAPI extends API {
         public Shard(Metapb.Shard shard, long partitionId) {
             this.role = String.valueOf(shard.getRole());
             this.storeId = shard.getStoreId();
-            this.state = Metapb.ShardState.SState_Normal.name(); //gshard的状态默认为normal
+            this.state = Metapb.ShardState.SState_Normal.name(); //gshard 的状态默认为 normal
             this.progress = 0;
             this.partitionId = partitionId;
         }
@@ -253,7 +253,7 @@ public class GraphAPI extends API {
             graphName = graph.getGraphName();
             partitionCount = graph.getPartitionCount();
             state = String.valueOf(graph.getState());
-            // 数据量及key的数量
+            // 数据量及 key 的数量
             List<Metapb.Store> stores = pdRestService.getStores(graphName);
             for (Metapb.Store store : stores) {
                 List<Metapb.GraphStats> graphStatsList = store.getStats().getGraphStatsList();

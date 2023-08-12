@@ -38,7 +38,7 @@ public interface VersionUpgradeScript {
     String getLowVersion();
 
     /**
-     * pd中没有data version的时候，是否执行. 一般是对应3。6。2之前的版本
+     * pd 中没有 data version 的时候，是否执行。一般是对应 3。6。2 之前的版本
      *
      * @return run when pd has no data version
      */

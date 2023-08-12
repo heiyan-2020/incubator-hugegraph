@@ -51,7 +51,7 @@ import com.alipay.sofa.jraft.util.Utils;
 import com.google.common.util.concurrent.ThreadFactoryBuilder;
 
 /**
- * PD发给Store的分区指令处理器
+ * PD 发给 Store 的分区指令处理器
  */
 public class PartitionInstructionProcessor implements PartitionInstructionListener {
     private static final Logger LOG = Log.logger(PartitionInstructionProcessor.class);
@@ -130,8 +130,8 @@ public class PartitionInstructionProcessor implements PartitionInstructionListen
     }
 
     /**
-     * Leader接收到PD发送的分区分裂任务
-     * 添加到raft任务队列，由raft进行任务分发。
+     * Leader 接收到 PD 发送的分区分裂任务
+     * 添加到 raft 任务队列，由 raft 进行任务分发。
      */
     @Override
     public void onSplitPartition(long taskId, Partition partition, SplitPartition splitPartition,
@@ -143,7 +143,7 @@ public class PartitionInstructionProcessor implements PartitionInstructionListen
         }
 
         if (engine != null && engine.isLeader()) {
-            // 先应答，避免超时造成pd重复发送
+            // 先应答，避免超时造成 pd 重复发送
             consumer.accept(0);
 
             String graphName = partition.getGraphName();
@@ -167,8 +167,8 @@ public class PartitionInstructionProcessor implements PartitionInstructionListen
     }
 
     /**
-     * Leader接收到PD发送的rocksdb compaction任务
-     * 添加到raft任务队列，由raft进行任务分发。
+     * Leader 接收到 PD 发送的 rocksdb compaction 任务
+     * 添加到 raft 任务队列，由 raft 进行任务分发。
      */
     @Override
     public void onDbCompaction(long taskId, Partition partition, DbCompaction dbCompaction,
@@ -209,7 +209,7 @@ public class PartitionInstructionProcessor implements PartitionInstructionListen
         }
 
         if (engine != null && engine.isLeader()) {
-            // 先应答，避免超时造成pd重复发送
+            // 先应答，避免超时造成 pd 重复发送
             consumer.accept(0);
 
             String graphName = partition.getGraphName();

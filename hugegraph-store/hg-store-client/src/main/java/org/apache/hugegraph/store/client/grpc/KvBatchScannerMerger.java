@@ -37,7 +37,7 @@ import lombok.extern.slf4j.Slf4j;
 
 /**
  * 批量查询结果归并，阻塞队列工作模式
- * 对请求任务的拆分,创建多个请求队列
+ * 对请求任务的拆分，创建多个请求队列
  */
 @Slf4j
 public class KvBatchScannerMerger implements KvCloseableIterator<HgKvIterator<HgKvEntry>>,
@@ -71,7 +71,7 @@ public class KvBatchScannerMerger implements KvCloseableIterator<HgKvIterator<Hg
             try {
                 // 队列有数据，还有活跃的查询器，任务未分配完
                 if (queue.size() != 0 || scanners.size() > 0 || !taskSplitter.isFinished()) {
-                    current = queue.poll(1, TimeUnit.SECONDS);  //定期检查client是否被关闭了
+                    current = queue.poll(1, TimeUnit.SECONDS);  //定期检查 client 是否被关闭了
                 } else {
                     break;
                 }
@@ -126,7 +126,7 @@ public class KvBatchScannerMerger implements KvCloseableIterator<HgKvIterator<Hg
     }
 
     /**
-     * 返回值<0表示任务结束
+     * 返回值<0 表示任务结束
      *
      * @param closeable
      * @return
@@ -147,7 +147,7 @@ public class KvBatchScannerMerger implements KvCloseableIterator<HgKvIterator<Hg
     }
 
     /**
-     * 组装一个Scanner的多个有序迭代器为一个迭代器
+     * 组装一个 Scanner 的多个有序迭代器为一个迭代器
      */
     static class ScannerDataQueue {
         private BlockingQueue<Supplier<HgKvIterator<HgKvEntry>>> queue;
@@ -179,7 +179,7 @@ public class KvBatchScannerMerger implements KvCloseableIterator<HgKvIterator<Hg
                 try {
                     int waitTime = 0;
                     Supplier<HgKvIterator<HgKvEntry>> current;
-                    current = queue.poll(1, TimeUnit.SECONDS);  //定期检查client是否被关闭了
+                    current = queue.poll(1, TimeUnit.SECONDS);  //定期检查 client 是否被关闭了
                     if (current == null) {
                         if (++waitTime > maxWaitCount) {
                             break;
@@ -221,7 +221,7 @@ public class KvBatchScannerMerger implements KvCloseableIterator<HgKvIterator<Hg
     }
 
     /**
-     * 对多个Scanner返回结果进行归并排序
+     * 对多个 Scanner 返回结果进行归并排序
      */
     static class SortedScannerMerger extends KvBatchScannerMerger {
         // 每一个流对应一个接收队列
@@ -231,7 +231,7 @@ public class KvBatchScannerMerger implements KvCloseableIterator<HgKvIterator<Hg
         public SortedScannerMerger(KvBatchScanner.TaskSplitter splitter) {
             super(splitter);
             queue.add(() -> {
-                // 对store返回结果进行归并排序
+                // 对 store 返回结果进行归并排序
                 return new HgKvIterator<>() {
                     private ScannerDataQueue iterator;
                     private int currentSN = 0;
@@ -285,8 +285,8 @@ public class KvBatchScannerMerger implements KvCloseableIterator<HgKvIterator<Hg
         }
 
         /**
-         * 从多个Scanner中挑选一个sn最小的迭代器
-         * 如果Scanner没有数据，等待数据到达。
+         * 从多个 Scanner 中挑选一个 sn 最小的迭代器
+         * 如果 Scanner 没有数据，等待数据到达。
          *
          * @return
          */

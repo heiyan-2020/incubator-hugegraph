@@ -25,7 +25,7 @@ public interface AsyncTask {
     void handleTask();
 
     /**
-     * 任务ID
+     * 任务 ID
      */
     String getId();
 

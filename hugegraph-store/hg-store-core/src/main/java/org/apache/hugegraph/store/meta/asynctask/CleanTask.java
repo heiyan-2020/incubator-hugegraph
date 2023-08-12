@@ -53,7 +53,7 @@ public class CleanTask extends AbstractAsyncTask {
                 CleanDataRequest request = (CleanDataRequest) getExtra();
                 var partition = storeEngine.getPartitionManager()
                                            .getPartition(getGraphName(), getPartitionId());
-                // 只允许清理本分区之外的数据。 缩容等任务会造成干扰, 而且不能删除分区
+                // 只允许清理本分区之外的数据。缩容等任务会造成干扰，而且不能删除分区
                 if (request.getKeyEnd() == partition.getStartKey() &&
                     request.getKeyEnd() == partition.getEndKey() &&
                     request.getCleanType() == CleanType.CLEAN_TYPE_EXCLUDE_RANGE &&

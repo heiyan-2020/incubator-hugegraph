@@ -46,7 +46,7 @@ public class RaftOperation {
     public static final byte DB_COMPACTION = 0x67;
     final static byte[] EMPTY_Bytes = new byte[0];
     private static final Logger LOG = LoggerFactory.getLogger(RaftOperation.class);
-    private byte[] values;     // req序列化的结果，用于传输给其他raft node
+    private byte[] values;     // req 序列化的结果，用于传输给其他 raft node
     private Object req;        // 原始对象，用于本机处理，减少一次反序列化操作
     private byte op;         // 操作类型
 

@@ -108,7 +108,7 @@ public class MetadataRocksDBStore extends MetadataStoreBase {
 
     @Override
     public List<KV> scanPrefix(byte[] prefix) throws PDException {
-        //TODO 使用rocksdb 前缀查询
+        //TODO 使用 rocksdb 前缀查询
         try {
             return this.store.scanPrefix(prefix);
         } catch (Exception e) {

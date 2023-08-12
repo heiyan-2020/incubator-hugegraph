@@ -107,7 +107,7 @@ public class ParallelScanIterator implements ScanIterator {
         while (current == null && tryTimes < waitDataMaxTryTimes) {
             try {
                 if (queue.size() != 0 || !finished) {
-                    current = queue.poll(100, TimeUnit.MILLISECONDS);  //定期检查client是否被关闭了
+                    current = queue.poll(100, TimeUnit.MILLISECONDS);  //定期检查 client 是否被关闭了
                     if (current == null && !finished) {
                         wakeUpScanner();
                     }
@@ -304,7 +304,7 @@ public class ParallelScanIterator implements ScanIterator {
         private volatile boolean closed = false;
 
         private ScanIterator getIterator() {
-            // 迭代器没有数据，或该点以达到limit，切换新的迭代器
+            // 迭代器没有数据，或该点以达到 limit，切换新的迭代器
             if (iterator == null || !iterator.hasNext() || counter >= limit) {
                 if (iterator != null) {
                     iterator.close();

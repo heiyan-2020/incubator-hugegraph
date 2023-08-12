@@ -129,7 +129,7 @@ public class GrpcShardScanner {
 
                     @Override
                     public void onError(Throwable t) {
-                        log.warn("调用grpc接口发生错误", t);
+                        log.warn("调用 grpc 接口发生错误", t);
                         latch.countDown();
                     }
 

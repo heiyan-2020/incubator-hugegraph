@@ -16,10 +16,10 @@
 #
 
 pdserver:
-  # pd服务地址，多个pd地址用逗号分割
+  # pd 服务地址，多个 pd 地址用逗号分割
   address: localhost:8686
 grpc:
-  # grpc的服务地址
+  # grpc 的服务地址
   host: 127.0.0.1
   port: 8500
   netty-server:
@@ -60,11 +60,11 @@ rocksdb:
   snapshot_path: ${app.data-path}/snapshot
   bloom_filter_bits_per_key: 10
   compression_per_level: "[none, zstd, zstd, zstd, zstd, zstd, zstd]"
-#fakePd配置参数
+#fakePd 配置参数
 fake-pd:
-  # fake-pd模式下，store grpc集群列表
+  # fake-pd 模式下，store grpc 集群列表
   store-list: 127.0.0.1:8500
-  # fake-pd模式下，设置raft集群列表
+  # fake-pd 模式下，设置 raft 集群列表
   peers-list: 127.0.0.1:8510
   # 分区数量
   partition-count: 10

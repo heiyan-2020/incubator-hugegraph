@@ -26,7 +26,7 @@ import org.apache.hugegraph.store.term.Bits;
 public class InnerKeyFilter<T extends BackendColumn> implements ScanIterator {
     final int codeFrom;
     final int codeTo;
-    //是否进行code过滤，启动该选项，返回key的尾部包含code
+    //是否进行 code 过滤，启动该选项，返回 key 的尾部包含 code
     final boolean codeFilter;
     ScanIterator iterator;
     T current = null;
@@ -79,11 +79,11 @@ public class InnerKeyFilter<T extends BackendColumn> implements ScanIterator {
     public T next() {
         T column = current;
         if (!codeFilter)
-        // 去掉图ID和hash后缀
+        // 去掉图 ID 和 hash 后缀
         {
             column.name = Arrays.copyOfRange(column.name, Short.BYTES,
                                              column.name.length - Short.BYTES);
-        } else// 去掉图ID
+        } else// 去掉图 ID
         {
             column.name = Arrays.copyOfRange(column.name, Short.BYTES,
                                              column.name.length);

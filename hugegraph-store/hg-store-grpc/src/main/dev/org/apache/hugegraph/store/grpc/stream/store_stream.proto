@@ -7,7 +7,7 @@ option java_package = "org.apache.hugegraph.store.grpc.stream";
 option java_outer_classname = "HgStoreStreamProto";
 
 /**
-    为了提升性能，复用内存，减少gc回收，需要重写KvStream.writeTo方法
+    为了提升性能，复用内存，减少 gc 回收，需要重写 KvStream.writeTo 方法
 
  */
 service HgStoreStream {

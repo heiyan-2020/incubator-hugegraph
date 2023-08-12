@@ -27,8 +27,8 @@ import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
 /**
- * HgStore单元测试
- * 1、测试raft多副本入库
+ * HgStore 单元测试
+ * 1、测试 raft 多副本入库
  * 2、测试快照同步
  * 3、测试副本增减
  * 4、测试单幅本关闭日志入库

@@ -25,7 +25,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 
 public class ByteBufferAllocator {
-    // 每个bytebuffer大小
+    // 每个 bytebuffer 大小
     final int capacity;
     // buffer 最大个数
     final int maxCount;

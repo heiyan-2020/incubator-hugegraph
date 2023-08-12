@@ -52,7 +52,7 @@ import lombok.extern.slf4j.Slf4j;
 
 
 /**
- * 使用pd，支持raft的单元测试
+ * 使用 pd，支持 raft 的单元测试
  */
 @Slf4j
 public class HgSessionManagerRaftPDTest {
@@ -263,7 +263,7 @@ public class HgSessionManagerRaftPDTest {
 
     // @Test
     //CAUTION: ONLY FOR LONG！
-    //注意：目前只可以对long类型value进行Merge操作。
+    //注意：目前只可以对 long 类型 value 进行 Merge 操作。
     public void merge() {
         System.out.println("--- test merge (1+1=2)---");
         HgStoreSession session = getStoreSession();

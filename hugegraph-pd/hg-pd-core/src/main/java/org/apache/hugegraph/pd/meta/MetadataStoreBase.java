@@ -40,7 +40,7 @@ public abstract class MetadataStoreBase {
     public abstract void put(byte[] key, byte[] value) throws PDException;
 
     /**
-     * 带有过期时间的put
+     * 带有过期时间的 put
      */
 
     public abstract void putWithTTL(byte[] key,
@@ -82,7 +82,7 @@ public abstract class MetadataStoreBase {
                                                                                       PDException;
 
     /**
-     * 检查Key是否存在
+     * 检查 Key 是否存在
      *
      * @param key
      * @return

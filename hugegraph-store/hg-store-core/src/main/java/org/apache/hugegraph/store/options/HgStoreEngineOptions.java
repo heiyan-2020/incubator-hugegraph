@@ -35,16 +35,16 @@ public class HgStoreEngineOptions {
     public static String Raft_Path_Prefix = "raft";
     public static String DB_Path_Prefix = "db";
     public static String Snapshot_Path_Prefix = "snapshot";
-    // store心跳间隔，单位秒
+    // store 心跳间隔，单位秒
     private final int storeHBInterval = 30;
     // 分区心跳间隔，单位秒
     private final int partitionHBInterval = 5;
-    // 等待leader超时时间，单位秒
+    // 等待 leader 超时时间，单位秒
     private final int waitLeaderTimeout = 30;
     private final int raftRpcThreadPoolSize = Utils.cpus() * 6;
-    // 没有PD模式，用于开发调试使用
+    // 没有 PD 模式，用于开发调试使用
     private boolean fakePD = false;
-    // fakePd配置项
+    // fakePd 配置项
     private FakePdOptions fakePdOptions = new FakePdOptions();
     private RaftOptions raftOptions = new RaftOptions();
     // pd 服务器地址
@@ -57,9 +57,9 @@ public class HgStoreEngineOptions {
     private String dataPath;
     private String raftPath;
     private Map<String, Object> rocksdbConfig;
-    // 自定义的标签，传给pd
+    // 自定义的标签，传给 pd
     private Map<String, String> labels;
-    // Raft任务处理器
+    // Raft 任务处理器
     private RaftTaskHandler taskHandler;
 
     private PdProvider pdProvider;
@@ -91,14 +91,14 @@ public class HgStoreEngineOptions {
          * Install snapshot RPC request default timeout in milliseconds
          */
         private final int rpcInstallSnapshotTimeout = 60 * 60 * 1000;
-        // 等待leader超时时间，单位秒
+        // 等待 leader 超时时间，单位秒
         private final int waitLeaderTimeout = 30;
         /**
          * The maximum number of entries in AppendEntriesRequest
          */
         private final int maxEntriesSize = 256;
         /**
-         * Raft集群发生数据积压后，限速等待时间 单位毫秒
+         * Raft 集群发生数据积压后，限速等待时间 单位毫秒
          **/
         private final int overloadRateLimit = 100;
         private final int keepInMemorySegmentCount = 2;

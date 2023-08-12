@@ -187,7 +187,7 @@ public final class RocksDBFactory {
     }
 
     /**
-     * 释放rocksdb对象
+     * 释放 rocksdb 对象
      *
      * @param dbName
      * @return

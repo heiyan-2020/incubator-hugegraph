@@ -87,7 +87,7 @@ public class KvBatchScanner implements Closeable {
 
     /**
      * 构建流式查询迭代器
-     * scanQuery进行拆分，启动多个流式请求，提升store的并发性
+     * scanQuery 进行拆分，启动多个流式请求，提升 store 的并发性
      *
      * @param scanQuery scanQuery
      * @param handler   task handler
@@ -231,16 +231,16 @@ public class KvBatchScanner implements Closeable {
          * 评估最大任务数
          */
         private void evaluateMaxTaskSize() {
-            if (maxTaskSize == 0) { // 根据第一批次任务，得到store数量，然后计算最大任务数
+            if (maxTaskSize == 0) { // 根据第一批次任务，得到 store 数量，然后计算最大任务数
                 if (scanQuery.getOrderType() == ScanOrderType.ORDER_STRICT) {
-                    maxTaskSize = 1; // 点排序，每台机器一个流, 所有store流结束后才能启动其他流
+                    maxTaskSize = 1; // 点排序，每台机器一个流，所有 store 流结束后才能启动其他流
                 } else {
                     maxTaskSize = this.notifier.getScannerCount() * maxTaskSizePerStore;
                 }
-                maxBatchSize = this.notifier.getScannerCount() * maxBatchSize; // 每台机器最多1000条
+                maxBatchSize = this.notifier.getScannerCount() * maxBatchSize; // 每台机器最多 1000 条
 
                 /*
-                 * Limit少于10000时启动一个流，节省网络带宽
+                 * Limit 少于 10000 时启动一个流，节省网络带宽
                  */
                 if (scanQuery.getLimit() < maxBatchSize * 30L) {
                     maxTaskSize = 1;
@@ -249,7 +249,7 @@ public class KvBatchScanner implements Closeable {
         }
 
         /**
-         * 拆分任务，任务拆分为多个grpc请求
+         * 拆分任务，任务拆分为多个 grpc 请求
          */
         public void splitTask() {
             if (this.finished || this.splitting) {

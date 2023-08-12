@@ -33,7 +33,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class IpUtil {
     /**
-     * 获取所有的ipv4 地址
+     * 获取所有的 ipv4 地址
      *
      * @return all ipv4 addr
      * @throws SocketException io error or no network interface
@@ -55,7 +55,7 @@ public class IpUtil {
     }
 
     /**
-     * 根据 option中的raft addr，根据本机的ip获取最相近的一个
+     * 根据 option 中的 raft addr，根据本机的 ip 获取最相近的一个
      *
      * @param raftAddress raft addr
      * @return raft addr that have the nearest distance with given param

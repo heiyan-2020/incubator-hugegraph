@@ -60,9 +60,9 @@ public class PartitionAPI extends API {
         // 分区下多个图的信息
         Map<Integer, Map<String, GraphStats>> partitions2GraphsMap = new HashMap<>();
         Map<Integer, HighLevelPartition> resultPartitionsMap = new HashMap<>();
-        // 每一个分区的keyCount， 只从leader处取出
+        // 每一个分区的 keyCount，只从 leader 处取出
         Map<Integer, Long> partition2KeyCount = new HashMap<>();
-        // 每一个分区的dataSize， 只从leader处取出
+        // 每一个分区的 dataSize，只从 leader 处取出
         Map<Integer, Long> partition2DataSize = new HashMap<>();
         List<Metapb.Store> stores;
         Map<Long, Metapb.Store> storesMap = new HashMap<>();
@@ -76,15 +76,15 @@ public class PartitionAPI extends API {
             storesMap.put(store.getId(), store);
             List<Metapb.GraphStats> graphStatsList = store.getStats().getGraphStatsList();
             for (Metapb.GraphStats graphStats : graphStatsList) {
-                // 获取分区保存的图信息（只从leader处取出来）
+                // 获取分区保存的图信息（只从 leader 处取出来）
                 if (Metapb.ShardRole.Leader != graphStats.getRole()) {
                     continue;
                 }
-                // 计算分区的keyCount（不区分图）
+                // 计算分区的 keyCount（不区分图）
                 partition2KeyCount.put(graphStats.getPartitionId(),
                                        partition2KeyCount.getOrDefault(graphStats.getPartitionId(),
                                                                        graphStats.getApproximateKeys()));
-                // 计算分区的dataSize, 通过累加图的大小实现
+                // 计算分区的 dataSize, 通过累加图的大小实现
                 partition2DataSize.put(graphStats.getPartitionId(),
                                        partition2DataSize.getOrDefault(graphStats.getPartitionId(),
                                                                        0L)
@@ -102,7 +102,7 @@ public class PartitionAPI extends API {
         // 构造分区的所有需返回的信息
         List<Metapb.Partition> partitionList = pdRestService.getPartitions("");
         for (Metapb.Partition partition : partitionList) {
-            // 补充分区内图信息的startKey, endKey
+            // 补充分区内图信息的 startKey, endKey
             if (partitions2GraphsMap.get(partition.getId()) != null) {
                 GraphStats graphStats =
                         partitions2GraphsMap.get(partition.getId()).get(partition.getGraphName());
@@ -136,9 +136,9 @@ public class PartitionAPI extends API {
                     shard.partitionId = partition.getId();
                 }
                 if ((partitionStats != null) && (partitionStats.getLeader() != null)) {
-                    long storeId = partitionStats.getLeader().getStoreId(); // 获取leader的storeId
+                    long storeId = partitionStats.getLeader().getStoreId(); // 获取 leader 的 storeId
                     resultPartition.leaderAddress =
-                            storesMap.get(storeId).getAddress(); // 获取leader的address
+                            storesMap.get(storeId).getAddress(); // 获取 leader 的 address
                 }
                 resultPartitionsMap.put(partition.getId(), resultPartition);
             }
@@ -183,7 +183,7 @@ public class PartitionAPI extends API {
             List<Partition> partitions = new ArrayList<>();//需返回的分区对象
             List<Metapb.Partition> partitionList = pdRestService.getPartitions("");
             List<Metapb.Store> stores = pdRestService.getStoreStats(false);
-            //分区的raftNode的状态
+            //分区的 raftNode 的状态
             HashMap<Long, HashMap<Integer, Metapb.RaftStats>> raftMap = new HashMap<>();
 
             HashMap<Long, HashMap<String, Metapb.GraphStats>> shardIndexMap = new HashMap<>();
@@ -423,7 +423,7 @@ public class PartitionAPI extends API {
                     log.error("get shard list failed, {}", e.getMessage());
                 }
             }
-            // 综合所有副本的状态，给shardState赋值
+            // 综合所有副本的状态，给 shardState 赋值
             shardState = tmpShardState.name();
         }
     }
@@ -465,7 +465,7 @@ public class PartitionAPI extends API {
         }
 
         ShardStats(Metapb.Shard shard) {
-            //当没有shardStats的初始化方法
+            //当没有 shardStats 的初始化方法
             storeId = shard.getStoreId();
             role = String.valueOf(shard.getRole());
             state = Metapb.ShardState.SState_Normal.name();

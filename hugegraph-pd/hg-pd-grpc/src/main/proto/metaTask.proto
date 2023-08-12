@@ -21,7 +21,7 @@ message Task {
   int64 start_timestamp = 4;
   metapb.Partition partition = 5;
   string message = 6;
-  //每个shard执行的任务状态
+  //每个 shard 执行的任务状态
   repeated ShardTaskState shardState = 7;
   ChangeShard changeShard = 9;
   SplitPartition splitPartition = 10;
