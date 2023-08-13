@@ -71,6 +71,7 @@ public final class KvStream extends
     private KvStream() {
         stream_ = ByteBuffer.allocate(0);
     }
+
     private KvStream(
             com.google.protobuf.CodedInputStream input,
             com.google.protobuf.ExtensionRegistryLite extensionRegistry)

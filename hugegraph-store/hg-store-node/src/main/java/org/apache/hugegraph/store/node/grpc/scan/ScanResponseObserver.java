@@ -102,7 +102,9 @@ public class ScanResponseObserver<T> implements
 
     private boolean sendCondition() {
         return nextSeqNo.get() - cltSeqNo.get() < MAX_PAGE;
-    }    Runnable rr = new Runnable() {
+    }
+
+    Runnable rr = new Runnable() {
         @Override
         public void run() {
             try {
@@ -172,7 +174,9 @@ public class ScanResponseObserver<T> implements
                 readLock.unlock();
             }
         }
-    }    Runnable sr = () -> {
+    }
+
+    Runnable sr = () -> {
         while (sendCondition()) {
             ScanResponse response;
             try {
@@ -258,10 +262,6 @@ public class ScanResponseObserver<T> implements
             log.warn("on Complete with error:", e);
         }
     }
-
-
-
-
 
 
 }

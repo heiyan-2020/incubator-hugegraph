@@ -160,14 +160,14 @@ public interface BusinessHandler extends DBSessionBuilder {
                             continue;
                         default:
                             throw new IllegalArgumentException(
-                                "unsupported batch-op-type: " + b.getOpType().name());
+                                    "unsupported batch-op-type: " + b.getOpType().name());
                     }
                 }
             }
             builder.build().commit();
         } catch (Throwable e) {
             String msg =
-                String.format("graph data %s-%s do batch insert with error:", graph, partId);
+                    String.format("graph data %s-%s do batch insert with error:", graph, partId);
             log.error(msg, e);
             builder.build().rollback();
             throw e;

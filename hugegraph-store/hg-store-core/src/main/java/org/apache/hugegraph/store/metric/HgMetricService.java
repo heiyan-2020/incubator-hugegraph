@@ -47,6 +47,7 @@ public class HgMetricService implements Lifecycle<Void> {
     private final SystemMetricService systemMetricService = new SystemMetricService();
     private HgStoreEngine storeEngine;
     private Map<String, Long> systemMetrics = new HashMap<>();
+
     private HgMetricService() {
     }
 

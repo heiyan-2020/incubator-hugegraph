@@ -42,6 +42,7 @@ import lombok.extern.slf4j.Slf4j;
 public class HgCmdProcessor<T extends HgCmdBase.BaseRequest> implements RpcProcessor<T> {
     private final Class<?> requestClass;
     private final HgStoreEngine engine;
+
     public HgCmdProcessor(Class<?> requestClass, HgStoreEngine engine) {
         this.requestClass = requestClass;
         this.engine = engine;

@@ -5,9 +5,9 @@ option java_package = "org.apache.hugegraph.store.grpc";
 import "google/protobuf/empty.proto";
 
 service Healthy {
-  rpc IsOk(google.protobuf.Empty) returns (StringReply) {}
+    rpc IsOk (google.protobuf.Empty) returns (StringReply) {}
 }
 
 message StringReply {
-  string message = 1;
+    string message = 1;
 }
