@@ -37,7 +37,7 @@ public interface PDWatch {
     /**
      * Watch the events of the store-nodes assigned to a specified graph.
      *
-     * @param graph the graph name which you want to watch
+     * @param graph    the graph name which you want to watch
      * @param listener
      * @return
      */
@@ -118,7 +118,10 @@ public interface PDWatch {
         /**
          * Invoked on completion.
          */
-        default void onCompleted() {};
+        default void onCompleted() {
+        }
+
+        ;
     }
 
     interface Watcher extends Closeable {

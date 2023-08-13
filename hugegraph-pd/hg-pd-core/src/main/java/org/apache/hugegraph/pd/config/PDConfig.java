@@ -201,7 +201,7 @@ public class PDConfig {
         private Long parseTimeExpression(String exp) {
             if (exp != null) {
                 Pattern pattern = Pattern.compile(
-                    "(?<n>(\\d+)*)(\\s)*(?<unit>(second|minute|hour|day|month|year)$)");
+                        "(?<n>(\\d+)*)(\\s)*(?<unit>(second|minute|hour|day|month|year)$)");
                 Matcher matcher = pattern.matcher(exp.trim());
                 if (matcher.find()) {
                     String n = matcher.group("n");

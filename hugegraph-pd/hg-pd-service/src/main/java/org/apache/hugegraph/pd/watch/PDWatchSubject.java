@@ -101,8 +101,8 @@ public class PDWatchSubject implements StreamObserver<WatchRequest> {
         subjectHolder.get(type.name()).notifyWatcher(builder);
     }
 
-    public static void notifyError(int code, String message){
-        subjectHolder.forEach((k, v)->{
+    public static void notifyError(int code, String message) {
+        subjectHolder.forEach((k, v) -> {
             v.notifyError(code, message);
         });
     }

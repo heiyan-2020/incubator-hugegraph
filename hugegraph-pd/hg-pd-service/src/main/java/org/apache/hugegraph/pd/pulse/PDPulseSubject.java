@@ -63,14 +63,14 @@ public class PDPulseSubject {
     private final static long NOTICE_EXPIRATION_TIME = 30 * 60 * 1000;
     private final static int RETRYING_PERIOD_SECONDS = 60;
     private final static Map<String, AbstractObserverSubject> subjectHolder =
-        new ConcurrentHashMap<>();
+            new ConcurrentHashMap<>();
     private final static ConcurrentLinkedQueue<NoticeBroadcaster> broadcasterQueue =
-        new ConcurrentLinkedQueue<>();
+            new ConcurrentLinkedQueue<>();
     private final static ScheduledExecutorService scheduledExecutor =
-        Executors.newScheduledThreadPool(1);
+            Executors.newScheduledThreadPool(1);
 
     private static Supplier<List<Metapb.QueueItem>> queueRetrieveFunction =
-        () -> Collections.emptyList();
+            () -> Collections.emptyList();
     private static Function<Metapb.QueueItem, Boolean> queueDurableFunction = (e) -> true;
     private static Function<String, Boolean> queueRemoveFunction = (e) -> true;
 
@@ -100,15 +100,15 @@ public class PDPulseSubject {
 
     private static void appendQueue() {
         broadcasterQueue.addAll(
-            getQueueItems()
-                .parallelStream()
-                .filter(e -> !broadcasterQueue
-                    .stream()
-                    .anyMatch(b -> e.getItemId().equals(b.getDurableId()))
-                ).map(e -> createBroadcaster(e))
-                .peek(e -> log.info("Appending notice: {}", e))
-                .filter(e -> e != null)
-                .collect(Collectors.toList())
+                getQueueItems()
+                        .parallelStream()
+                        .filter(e -> !broadcasterQueue
+                                .stream()
+                                .anyMatch(b -> e.getItemId().equals(b.getDurableId()))
+                        ).map(e -> createBroadcaster(e))
+                        .peek(e -> log.info("Appending notice: {}", e))
+                        .filter(e -> e != null)
+                        .collect(Collectors.toList())
         );
     }
 
@@ -134,13 +134,13 @@ public class PDPulseSubject {
     }
 
     public static void setQueueRetrieveFunction(
-        Supplier<List<Metapb.QueueItem>> queueRetrieveFunction) {
+            Supplier<List<Metapb.QueueItem>> queueRetrieveFunction) {
         HgAssert.isArgumentNotNull(queueRetrieveFunction, "queueRetrieveFunction");
         PDPulseSubject.queueRetrieveFunction = queueRetrieveFunction;
     }
 
     public static void setQueueDurableFunction(
-        Function<Metapb.QueueItem, Boolean> queueDurableFunction) {
+            Function<Metapb.QueueItem, Boolean> queueDurableFunction) {
         HgAssert.isArgumentNotNull(queueDurableFunction, "queueDurableFunction");
         PDPulseSubject.queueDurableFunction = queueDurableFunction;
     }
@@ -157,7 +157,7 @@ public class PDPulseSubject {
      * @return
      */
     public static StreamObserver<PulseRequest> addObserver(
-        StreamObserver<PulseResponse> responseObserver) {
+            StreamObserver<PulseResponse> responseObserver) {
         isArgumentNotNull(responseObserver, "responseObserver");
         return new PDPulseStreamObserver(responseObserver);
     }
@@ -219,7 +219,7 @@ public class PDPulseSubject {
     // }
 
     public static <T extends com.google.protobuf.GeneratedMessageV3> Supplier<Long> getNoticeSupplier(
-        T notice) {
+            T notice) {
         PulseType type;
         if (notice instanceof PdInstructionResponse) {
             type = PulseType.PULSE_TYPE_PD_INSTRUCTION;
@@ -233,7 +233,7 @@ public class PDPulseSubject {
 
 
     private static Supplier<String> getDurableSupplier(
-        com.google.protobuf.GeneratedMessageV3 notice) {
+            com.google.protobuf.GeneratedMessageV3 notice) {
         return () -> {
             Metapb.QueueItem queueItem = toQueueItem(notice);
             String res = null;
@@ -243,9 +243,9 @@ public class PDPulseSubject {
                     res = queueItem.getItemId();
                 } else {
                     log.error(
-                        "Failed to persist queue-item that contained " +
-                        "PartitionHeartbeatResponse: {}"
-                        , notice);
+                            "Failed to persist queue-item that contained " +
+                            "PartitionHeartbeatResponse: {}"
+                            , notice);
                 }
             } catch (Throwable t) {
                 log.error("Failed to invoke queueDurableFunction, cause by:", t);
@@ -329,7 +329,7 @@ public class PDPulseSubject {
 
             if (this.subject == null) {
                 this.responseObserver.onError(
-                    new Exception("Invoke cancel-observer before create-observer."));
+                        new Exception("Invoke cancel-observer before create-observer."));
                 return;
             }
 
@@ -374,7 +374,7 @@ public class PDPulseSubject {
 
             if (subject == null) {
                 responseObserver.onError(
-                    new Exception("Unsupported pulse-type: " + pulseType.name()));
+                        new Exception("Unsupported pulse-type: " + pulseType.name()));
                 return null;
             }
 
@@ -392,7 +392,7 @@ public class PDPulseSubject {
                             log.info("send change leader command to watch, due to ERROR-100", pde);
                             notifyClient(PdInstructionResponse.newBuilder()
                                                               .setInstructionType(
-                                                                  PdInstructionType.CHANGE_TO_FOLLOWER)
+                                                                      PdInstructionType.CHANGE_TO_FOLLOWER)
                                                               .setLeaderIp(RaftEngine.getInstance()
                                                                                      .getLeaderGrpcAddress())
                                                               .build());
@@ -425,7 +425,7 @@ public class PDPulseSubject {
 
             if (pulseRequest.hasAckRequest()) {
                 this.ackNotice(pulseRequest.getAckRequest().getNoticeId()
-                    , pulseRequest.getAckRequest().getObserverId());
+                        , pulseRequest.getAckRequest().getObserverId());
             }
         }
 

@@ -269,7 +269,9 @@ public class KvClient<T extends WatchResponse> extends AbstractClient implements
             throw e;
         }
         return response;
-    }    BiConsumer<String, Consumer> listenWrapper = (key, consumer) -> {
+    }
+
+    BiConsumer<String, Consumer> listenWrapper = (key, consumer) -> {
         try {
             listen(key, consumer);
         } catch (PDException e) {
@@ -333,7 +335,6 @@ public class KvClient<T extends WatchResponse> extends AbstractClient implements
     public void close() {
         super.close();
     }
-
 
 
     BiConsumer<String, Consumer> prefixListenWrapper = (key, consumer) -> {
